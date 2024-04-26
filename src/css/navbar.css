@@ -180,8 +180,8 @@
 }
 
 
-.menu1:hover::before, .menu2:hover::before, .nombre:hover::before,
-.menu1:hover::after, .menu2:hover::after, .nombre:hover::after {
+.menu1:hover::before, .menu2:hover::before, .nombre:hover::before
+.menu1:hover::after, .menu2:hover::after, .nombre:hover::after{
     content: ''; 
     position: absolute; 
     left: 0; 
@@ -192,7 +192,7 @@
 }
 
 
-.menu1:hover::before, .menu2:hover::before, .nombre:hover::before {
+.menu1:hover::before, .menu2:hover::before, .nombre:hover::before{
     top: 0; 
     margin-top: 0.6rem; 
 }

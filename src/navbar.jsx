@@ -42,6 +42,7 @@ function navbar(){
                 <div className='contenedor-session'>
                     <button className='user'><img src={user} alt="" /></button>
                     <button className='carrito'><img src={carrito} alt="" /></button>
+                    
                 </div>
 
             </div>
