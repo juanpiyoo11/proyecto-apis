@@ -55,8 +55,10 @@ function navbar(){
                         <img src={user} alt="" />
                         {showUserMenu && (
                             <div id="userDropdown" className="dropdown-content" onMouseEnter={handleUserEnter} onMouseLeave={handleUserLeave}>
-                                <a href="#" className='decoracion-enlace nombre2'> Titulo 1</a>
-                                <a href="#" className='decoracion-enlace nombre2'>Titulo 2</a>
+                                <a href="#" className='decoracion-enlace nombre2'> Mi Cuenta</a>
+                                <a href="#" className='decoracion-enlace nombre2'>Mis Pedidos</a>
+                                <a href="#" className='decoracion-enlace nombre2'>Mis Productos</a>
+                                <a href="#" className='decoracion-enlace nombre2'>Cerrar Sesion</a>
                             </div>
                         )}
                     </div>

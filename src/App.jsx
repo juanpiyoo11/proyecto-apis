@@ -19,10 +19,10 @@ function App() {
       <div className="carrusel">
         <Carrusel  /> 
       </div>
-      <di className="abm">
+      <div className="abm">
       <AbmProducts/>
 
-      </di>
+      </div>
     </div>
 
     </>

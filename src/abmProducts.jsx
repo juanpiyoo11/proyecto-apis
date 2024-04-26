@@ -16,6 +16,30 @@ const abmProducts = () => {
     ]);
     
     const handlePublicar = () => {
+        if(typeof newBrand !== 'string' || newBrand.trim() === ""){
+            alert("Complete los campos")
+            return;
+        }
+        if(typeof newName !== 'string' || newName.trim() === ""){
+            alert("Complete los campos")
+            return;
+        }
+        if(typeof newCategory !== 'string' || newCategory.trim() === ""){
+            alert("Complete los campos")
+            return;
+        }
+        if(typeof newPrice !== 'string' || newPrice.trim() === ""){
+            alert("Complete los campos")
+            return;
+        }
+        if(typeof newSize !== 'string' || newSize.trim() === ""){
+            alert("Complete los campos")
+            return;
+        }
+        if(typeof newColor !== 'string' || newColor.trim() === ""){
+            alert("Complete los campos")
+            return;
+        }
         setProducts([...products, {
             id: count,
             brand: newBrand,
@@ -34,6 +58,39 @@ const abmProducts = () => {
         setProducts(newProducts)
     }
 
+    const updateProduct = (productId) => {
+        const updatedProducts = products.map(product => {
+            // const updatedFields = {};
+                
+            if (product.id === productId) {
+                if(typeof newBrand === 'string' && newBrand.trim() !== ""){
+                    product.brand = newBrand
+                }
+                if(typeof newName === 'string' && newName.trim() !== ""){
+                    product.name = newName
+                }
+                if(typeof newCategory === 'string' && newCategory.trim() !== ""){
+                    product.category = newCategory
+                }
+                if(typeof newPrice === 'string' && newPrice.trim() !== ""){
+                    product.price = newPrice
+                }
+                if(typeof newSize === 'string' && newSize.trim() !== ""){
+                    product.size = newSize
+                }
+                if(typeof newColor === 'string' && newColor.trim() !== ""){
+                    product.color = newColor
+                }
+                
+            }
+            return product;
+        });
+    
+        setProducts(updatedProducts);
+    };
+    
+    
+
     const handleBrand = (event) => setBrand(event.target.value);
     const handleName = (event) => setName(event.target.value);
     const handleCategory = (event) => setCategory(event.target.value);
@@ -44,7 +101,7 @@ const abmProducts = () => {
 return (
     <div>
         { <form onSubmit={(e) => e.preventDefault()}>
-            <label>Agregar un producto</label>
+            <h1>Agregar un producto</h1>
             <ul>
                 <li>Marca: <input type="text" name="brand" onChange={handleBrand} placeholder="Ej: Nike"/></li>
                 <li>Nombre: <input type="text" name="name" onChange={handleName} placeholder="Ej: Air Force 1"/></li>
@@ -56,8 +113,9 @@ return (
             <button onClick = {handlePublicar}> Publicar </button>
 
         </form> }
+        <h1>Mis Productos</h1>
         {products.map((item, index) => (
-                <Products deleteProduct={deleteProduct} key={index} index={index} brand={item.brand} name={item.name} price={item.price} size={item.size} color={item.color}/>
+                <Products deleteProduct={deleteProduct} updateProduct={updateProduct} key={index} index={index} id={item.id} brand={item.brand} name={item.name} category={item.category} price={item.price} size={item.size} color={item.color}/>
         ))}
     </div>
 )
