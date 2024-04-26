@@ -28,6 +28,17 @@ function navbar(){
         setSubmenuActive(false);
         setMenuVisible(false);
     };
+
+
+    const [showUserMenu, setShowUserMenu] = useState(false);
+
+    const handleUserEnter = () => {
+        setShowUserMenu(true);
+    };
+
+    const handleUserLeave = () => {
+        setShowUserMenu(false);
+    };
     return(
         <>
         <div className='parteSuperior'>
@@ -40,9 +51,16 @@ function navbar(){
                     <button className='submit'><img src={search} alt="Buscar" /></button>
                 </div>
                 <div className='contenedor-session'>
-                    <button className='user'><img src={user} alt="" /></button>
+                    <div className='user' onMouseEnter={handleUserEnter} onMouseLeave={handleUserLeave}>
+                        <img src={user} alt="" />
+                        {showUserMenu && (
+                            <div id="userDropdown" className="dropdown-content" onMouseEnter={handleUserEnter} onMouseLeave={handleUserLeave}>
+                                <a href="#" className='decoracion-enlace nombre2'> Titulo 1</a>
+                                <a href="#" className='decoracion-enlace nombre2'>Titulo 2</a>
+                            </div>
+                        )}
+                    </div>
                     <button className='carrito'><img src={carrito} alt="" /></button>
-                    
                 </div>
 
             </div>
