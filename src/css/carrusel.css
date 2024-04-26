@@ -1,10 +1,10 @@
 .carrusel {
-    position: relative;
-    width: 100%;
-    z-index: 500;
-    height: 60vh;
-    top: 9.21rem;
-  }
+  position: relative;
+  width: 100%;
+  z-index: 500;
+  height: 60vh;
+  
+}
   
   .slides {
     
