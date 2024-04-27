@@ -4,9 +4,11 @@ import carrito from './imagenes/shopping-cart.svg'
 import user from './imagenes/user.svg'
 import './css/navbar.css'
 import './navbar'
+import {useNavigate, Routes, Route, Link} from 'react-router-dom'
 
 import React, { useState } from 'react';
 function navbar(){
+    const navigate = useNavigate();
     const [menuVisible, setMenuVisible] = useState(false);
     const [submenuActive, setSubmenuActive] = useState(false);
 
@@ -57,11 +59,12 @@ function navbar(){
                             <div id="userDropdown" className="dropdown-content" onMouseEnter={handleUserEnter} onMouseLeave={handleUserLeave}>
                                 <a href="#" className='decoracion-enlace nombre2'> Mi Cuenta</a>
                                 <a href="#" className='decoracion-enlace nombre2'>Mis Pedidos</a>
-                                <a href="#" className='decoracion-enlace nombre2'>Mis Productos</a>
+                                <a href="#" className='decoracion-enlace nombre2' onClick={() => navigate('/products')}>Mis Productos</a>
                                 <a href="#" className='decoracion-enlace nombre2'>Cerrar Sesion</a>
                             </div>
                         )}
                     </div>
+
                     <button className='carrito'><img src={carrito} alt="" /></button>
                 </div>
 

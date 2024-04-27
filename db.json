@@ -9,7 +9,8 @@
       "price": "149999", 
       "size": "10", 
       "color": "White",
-      "sex": "Unisex"
+      "sex": "Unisex",
+      "stock": "6"
     },
     {
       "id": "2",
@@ -20,7 +21,8 @@
       "price": "119999", 
       "size": "8", 
       "color": "White",
-      "sex": "Unisex"
+      "sex": "Unisex",
+      "stock": "3"
     },
     {
       "id": "3",
@@ -31,6 +33,7 @@
       "price": "99999", 
       "size": "9.5", 
       "color": "White",
-      "sex": "Unisex"
+      "sex": "Unisex",
+      "stock": "2"
     }]
   }
