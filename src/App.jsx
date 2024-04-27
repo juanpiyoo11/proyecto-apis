@@ -17,13 +17,14 @@ function App() {
       <div className="navbar">
         <Navbar/> 
       </div>
-      <div className="carrusel">
+      {/* <div className="carrusel">
         <Carrusel  /> 
-      </div>
+      </div> */}
       </div>
       <div>
         <Routes>
           <Route path ='/'/>
+          <Route path ='/home' element={<Carrusel/>} />
           <Route path ='/products' element={<ProductPage/>} />
           <Route path ='/addproducts' element={<AddProduct/>} />
           <Route path ='/modifyproducts/:id' element={<ModifyProduct/>} />

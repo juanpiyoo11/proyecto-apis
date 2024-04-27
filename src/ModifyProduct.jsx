@@ -67,7 +67,7 @@ const ModifyProduct = () => {
             
             <button type = "submit">Modificar</button>
         </form>
-        <button onClick={() => navigate('../')}>Back to Home</button>
+        <button onClick={() => navigate('../home')}>Back to Home</button>
     </div>
 )
 }

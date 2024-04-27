@@ -93,7 +93,7 @@ const AddProduct =()=> {
                 <button type="submit"> Publicar </button>
             </form> }
             <button onClick= {() => console.log(products)}>TEST</button>
-            <button onClick={() => navigate('../')}>Back to Home</button>
+            <button onClick={() => navigate('../home')}>Back to Home</button>
     </div>
 )
 }

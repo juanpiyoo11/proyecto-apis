@@ -9,7 +9,7 @@ const ProductPage = () => {
       <Products/>
       <button onClick ={() => navigate('../addproducts')}>Agregar un nuevo producto</button>
       <br />
-      <button onClick={() => navigate('../')}>Back to Home</button>
+      <button onClick={() => navigate('../home')}>Back to Home</button>
     </>
 
   )
