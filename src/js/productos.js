@@ -49,6 +49,20 @@ let data_productos = [
     imagen: zapatillas,
     precio: "64.000",
   },
+  {
+    id: 9,
+    nombre: "Par zapatillas N",
+    imagen: zapatillas,
+    precio: "64.000",
+  },
+  {
+    id: 10,
+    nombre: "Par zapatillas N",
+    imagen: zapatillas,
+    precio: "64.000",
+  }
+  
+
 ];
 
 export default data_productos;

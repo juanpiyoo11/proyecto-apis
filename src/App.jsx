@@ -9,9 +9,18 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      <Carrusel />
+    <div className='contenedor-todo'>
+      <div className="navbar">
+      <Navbar/> 
+      </div>
+      <div className="carrusel">
+        <Carrusel  /> 
+      </div>
+      <div>
       <Productos />
+
+      </div>
+    </div>
     </>
   );
 }
