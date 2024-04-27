@@ -5,14 +5,29 @@ import './css/App.css'
 import Carrusel from './carrusel.jsx'
 
 import Navbar from'./navbar'
+
+import Pie from './pie.jsx'
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <Navbar /> 
+      
+  <div className='contenedor-todo'>
 
-      <Carrusel /> 
+      <div className="navbar">
+      <Navbar/> 
+      </div>
+
+      <div className="carrusel">
+        <Carrusel  /> 
+      </div>
+
+      <div className='footer'>
+      <Pie />
+      </div>
+  </div>
 
     </>
   )
