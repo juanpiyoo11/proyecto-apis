@@ -1,62 +1,65 @@
 .contenedor_todo {
-    width: 100%;
-    height: 100%; /* Usamos la altura total de la ventana */
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Centramos verticalmente */
-    background-color: #f6f6f6;
-  }
-  
-  form {
-    width: 60%;
-    display: flex;
-    flex-direction: column; /* Apilamos los elementos verticalmente */
-    align-items: center; /* Centramos horizontalmente */
-  }
-  
-  .sector{
-    background-color: #fff;
-    width: 80%;
-    border-radius: 10px;
-    border: #fff solid 5px;
-    padding: 1rem;
-  }
-  label{
-    display: flex;
-    justify-content: initial;
-    font-weight: 600;
-    color: black;
-    font-size: 20px;
-  }
-  .agrega{
-    width: 100%;
-  }
-  
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f6f6;
+}
 
-  .sexos{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding-left: 1rem;
-  }
+.titulo {
+  display: flex;
+  justify-content: flex-start; /* Alinea el título a la izquierda */
+}
 
-  .boton{
-    background-color: white;
-    border: black solid 3px;
-  }
+form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .botones{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem;
-    padding-bottom: 10rem;
-    padding-top: 3rem;
-  }
+.sector {
+  background-color: #fff;
+  width: 80%;
+  border-radius: 10px;
+  border: #fff solid 5px;
+  padding: 1rem;
+}
 
+label {
+  display: flex;
+  justify-content: initial;
+  font-weight: 600;
+  color: black;
+  font-size: 20px;
+}
 
+.agrega {
+  width: 100%;
+}
 
-  .boton:hover {
-    background-color: #ccc; /* Cambiamos el fondo a un gris claro */
-    border-color: black; /* Cambiamos el color del borde a negro */
-  }
-  
+.sexos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-left: 1rem;
+}
+
+.boton {
+  background-color: white;
+  border: black solid 3px;
+}
+
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding-bottom: 10rem;
+  padding-top: 3rem;
+}
+
+.boton:hover {
+  background-color: #ccc;
+  border-color: black;
+}

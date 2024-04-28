@@ -62,7 +62,7 @@ const AddProduct =()=> {
             { <form onSubmit={handlePublicar}>
                 
                     
-                    <h1>Agregar un producto</h1>
+                    <h1 className='titulo'>Agregar un producto</h1>
                     <div className='sector'>
                         <label>Nombre: </label>
                         <br />
