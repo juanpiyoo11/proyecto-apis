@@ -13,22 +13,23 @@ function App() {
 
   return (
     <>
-      <div className='contenedor-todo'>
+    <div className='contenedor-todo'>
       <div className="navbar">
         <Navbar/> 
       </div>
       <div className="carrusel">
         <Carrusel  /> 
       </div>
-      </div>
-      <div>
+      <div className='abm'>
         <Routes>
           <Route path ='/'/>
-          <Route path ='/products' element={<ProductPage/>} />
+          <Route  path ='/products' element={<ProductPage/>} />
           <Route path ='/addproducts' element={<AddProduct/>} />
           <Route path ='/modifyproducts/:id' element={<ModifyProduct/>} />
         </Routes>
     </div>
+    </div>
+     
 
     </>
   )

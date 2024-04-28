@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import {useNavigate} from 'react-router-dom'
-
+import './css/addProduct.css'
 const AddProduct =()=> {
     const navigate = useNavigate();
 
@@ -58,42 +58,90 @@ const AddProduct =()=> {
         alert("Publicado con exito");
     };
   return (
-    <div>
+    <div className="contenedor_todo">
             { <form onSubmit={handlePublicar}>
-                <h1>Agregar un producto</h1>
-                <label>Marca: </label><input type="text" name="brand" placeholder="Ej: Nike" required/>
                 
-                <label>Nombre: </label><input type="text" name="name" placeholder="Ej: Air Force 1" required/>
-                
-                <label>Categoria: </label><input type="text" name="category" placeholder="Ej: Zapatillas" required/>
-                
-                <label>Precio: </label><input type="number" name="price" placeholder="Ej: 119999" required/>
+                    
+                    <h1>Agregar un producto</h1>
+                    <div className='sector'>
+                        <label>Nombre: </label>
+                        <br />
+                        <input className='agrega' type="text" name="name" placeholder="Ej: Air Force 1" required/>
+ 
+                    </div>
 
-                <select name="size" required>
-                <option value="">Seleccione un talle</option>
-                {[...Array(15).keys()].map((index) => (
-                <option key={index} value={7 + index * 0.5}>
-                {7 + index * 0.5}
-                </option>
-                ))}
-                </select>
-                
-                <label>Color: </label><input type="text" name="color" placeholder="Seleccione todos los colores disponibles" required/>
+                    <br />
+                    <div className="sector">
 
-                <label>Sexo: </label>
-                
-                <label><input type="radio" name="sex" value="F" required/> F</label>
-                
-                <label><input type="radio" name="sex" value="M" required/> M</label>
-                
-                <label><input type="radio" name="sex" value="Unisex" required/> Unisex</label>
-                
-                <label>Stock: </label><input type="number" min="1" name="stock" placeholder="Ingrese unidades disponibles"required/>
-                
-                <button type="submit"> Publicar </button>
+                        <label className='subtitulo'>Marca: </label>
+                        <br />
+                        <input className='agrega' type="text" name="brand" placeholder="Ej: Nike" required/>                    
+                    </div>
+                    <br />
+                    <div className="sector">
+                    <label>Categoria: </label>
+                    <br />
+                    <input className='agrega' type="text" name="category" placeholder="Ej: Zapatillas" required/>
+
+                    </div>
+                    <br />
+                    <dic className="sector">
+                    <label>Precio: </label>
+                    <br />
+                    <input className='agrega' type="number" name="price" placeholder="Ej: 119999" required/>
+
+                    </dic>
+                    <br />
+                    <div className="sector">
+                    <label>Talle: </label>
+                    <br />
+                    <select name="size" required>
+                    <option value="">Seleccione un talle</option>
+                    {[...Array(15).keys()].map((index) => (
+                    <option key={index} value={7 + index * 0.5}>
+                    {7 + index * 0.5}
+                    </option>
+                    ))}
+                    </select>
+
+                    </div>
+                    <br />
+                    <div className="sector">
+                        
+                    <label>Color: </label>
+                    <br />
+                    <input type="text" className='agrega' name="color" placeholder="Seleccione todos los colores disponibles" required/>
+                    </div>
+                    <br />
+                    <div className="sector">
+                    <label>Sexo: </label>
+                    <br />
+                    <div className='sexos'>
+                        <label><input type="radio" name="sex" value="F" required/> F</label>
+                        <label><input type="radio" name="sex" value="M" required/> M</label>
+                        <label><input type="radio" name="sex" value="Unisex" required/> Unisex</label>
+
+                    </div>
+
+                    </div>
+                    
+                    
+                    
+                    <br />
+                    <div className="sector">
+
+                    <label>Stock: </label>
+                    <br />
+                    <input type="number" className='agrega' min="1" name="stock" placeholder="Ingrese unidades disponibles"required/>
+                    </div>
+                    <br />
+                    <div className='botones'>
+
+                    <button className='boton' type="submit"> Publicar </button>
+                    <button className='boton' onClick= {() => console.log(products)}>TEST</button>
+                    <button className='boton' onClick={() => navigate('../')}>Back to Home</button>
+                    </div>
             </form> }
-            <button onClick= {() => console.log(products)}>TEST</button>
-            <button onClick={() => navigate('../')}>Back to Home</button>
     </div>
 )
 }

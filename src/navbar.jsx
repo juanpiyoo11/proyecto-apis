@@ -3,7 +3,7 @@ import search from './imagenes/search.svg'
 import carrito from './imagenes/shopping-cart.svg'
 import user from './imagenes/user.svg'
 import './css/navbar.css'
-import './navbar'
+
 import {useNavigate, Routes, Route, Link} from 'react-router-dom'
 
 import React, { useState } from 'react';
