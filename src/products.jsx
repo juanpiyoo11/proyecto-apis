@@ -20,7 +20,7 @@ const products = () => {
 }
 
   return (
-    <div>
+    <div >
           <h1>Mis Productos</h1>
           {products.map((product) => (
           <ul key={product.id}>
