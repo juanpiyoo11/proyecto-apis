@@ -1,0 +1,30 @@
+.contenedor-todo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Alinea los elementos a la izquierda */
+    background-color: #f6f6f6;
+    
+}
+  
+  .productos {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .titulo {
+    margin-left: 20px; 
+    justify-content: center;/* Ajusta el margen izquierdo del título */
+  }
+  
+  .botones {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    margin-top: 0rem; /* Ajusta el margen superior de los botones */
+  }
+  
+  .boton {
+    margin: 0 10px; /* Añade espacio entre los botones */
+  }
+  
