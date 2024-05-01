@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import './css/App.css'
 import Carrusel from './carrusel.jsx'
+
+
+import Navbar from'./navbar'
+
+import Pie from './pie.jsx'
+
 import PaginaProducto from './paginaProducto.jsx'
 
 import ProductPage from './ProductPage.jsx'
@@ -41,9 +47,13 @@ function App() {
           <Route path ='/modifyproducts/:id' element={<ModifyProduct/>} />
         </Routes>
     </div>
+      <div className='footer'>
+        <Pie />
+      </div>
     </div>
 
   </ChakraProvider>     
+
 
     </>
   )
