@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import './css/App.css'
 import Carrusel from './carrusel.jsx'
+import PaginaProducto from './paginaProducto.jsx'
+
 import ProductPage from './ProductPage.jsx'
 import AddProduct from './AddProduct.jsx'
 import ModifyProduct from './ModifyProduct.jsx'
@@ -8,15 +10,27 @@ import {Routes, Route} from 'react-router-dom'
 
 
 import Navbar from'./navbar'
+
+
+import * as React from 'react'
+
+import { ChakraProvider } from '@chakra-ui/react'
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+  <ChakraProvider> 
 
     <div className='contenedor-todo'>
-      <div className="navbar">
-        <Navbar/> 
+
+      <div className='navbar'>
+        <Navbar/>
+      </div>
+      
+      <div className='paginaProducto'>
+        <PaginaProducto/>
       </div>
       <div className='abm'>
         <Routes>
@@ -28,6 +42,9 @@ function App() {
         </Routes>
     </div>
     </div>
+
+  </ChakraProvider>     
+
     </>
   )
 }
