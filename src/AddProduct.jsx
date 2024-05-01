@@ -70,7 +70,7 @@ const AddProduct =()=> {
             { <form onSubmit={handlePublicar}>
                 
                     
-                    <h1>Agregar un producto</h1>
+                    <h1 className='titulo'>Agregar un producto</h1>
                     <div className='sector'>
                         <label>Nombre: </label>
                         <br />
@@ -152,7 +152,7 @@ const AddProduct =()=> {
 
                     <button className='boton' type="submit"> Publicar </button>
                     {/* <button className='boton' onClick= {() => console.log(products)}>TEST</button> */}
-                    <button className='boton' onClick={() => navigate('../')}>Back to Home</button>
+                    <button className='boton' onClick={() => navigate('../home')}>Back to Home</button>
                     <button className='boton' onClick={() => navigate('../products')}>My products </button>
                     </div>
                     
