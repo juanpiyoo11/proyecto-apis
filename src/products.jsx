@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import {useNavigate} from 'react-router-dom';
 import {getProducts, deleteProduct} from "./js/productServices.js"
-
+import './css/producto.css'
 
 const products = () => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const products = () => {
 
   useEffect(() => {
     getProducts().then((data) => setProducts(data));
-  })
+  }, []);
   // useEffect(() => {
   //     fetch("http://localhost:3000/products")
   //     .then((response) => response.json())
@@ -18,15 +18,23 @@ const products = () => {
   // }, [])
 
   const deleteProducts = (id) => {
-    deleteProduct(id);
-    alert(`Producto ${id} eliminado con exito`)
+    try {
+      deleteProduct(id);
+      const updatedProducts = products.filter(product => product.id !== id);
+      setProducts(updatedProducts);
+      alert(`Producto ${id} eliminado con éxito`);
+    } catch (error) {
+      console.error('Error al eliminar el producto:', error);
+    }
 }
 
   return (
     <div >
-          <h1>Mis Productos</h1>
+          <h1 className='title'>Mis Productos</h1>
+          <div className="productos">
+
           {products.map((product) => (
-          <ul key={product.id}>
+          <ul className='producto' key={product.id}>
             <li><img src={product.image} alt="Imagen del producto"style={{ maxWidth: '200px', maxHeight: '200px' }}/></li>
             <li>Id: {product.id}</li>
             <li>Publicador: {product.publisherId}</li>
@@ -38,12 +46,13 @@ const products = () => {
             <li>Color: {product.color}</li>
             <li>Sexo: {product.sex}</li>
             <li>Stock: {product.stock}</li>
-            <li>
+            <li className='buttons'>
             <button onClick={() => deleteProducts(product.id)}>Eliminar</button>
             <button onClick={() => navigate(`../modifyProducts/${product.id}`)}>Modificar</button>
           </li>
         </ul>
       ))}
+          </div>
     </div>
   );
 }

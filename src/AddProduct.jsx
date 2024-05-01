@@ -10,7 +10,7 @@ const AddProduct =()=> {
     const [products, setProducts] = useState([]);
     useEffect(() => {
         getProducts().then((data) => setProducts(data));
-      })
+      },[])
 
       const handlePublicar = (e) => {
         e.preventDefault();
