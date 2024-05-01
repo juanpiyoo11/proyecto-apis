@@ -13,6 +13,7 @@ function App() {
 
   return (
     <>
+
     <div className='contenedor-todo'>
       <div className="navbar">
         <Navbar/> 
@@ -27,8 +28,6 @@ function App() {
         </Routes>
     </div>
     </div>
-     
-
     </>
   )
 }
