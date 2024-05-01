@@ -1,0 +1,69 @@
+.contenedor_todo {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f6f6;
+  border: 3px solid #ccc;
+}
+
+.titulo {
+  text-align: center;
+    margin-bottom: 3rem;
+    color: black;
+    font-size: 3rem;
+}
+
+form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sector {
+  background-color: #fff;
+  width: 80%;
+  border-radius: 10px;
+  border: #fff solid 5px;
+  padding: 1rem;
+  border: 3px solid #ccc;
+}
+
+label {
+  display: flex;
+  justify-content: initial;
+  font-weight: 600;
+  color: black;
+  font-size: 20px;
+}
+
+.agrega {
+  width: 100%;
+}
+
+.sexos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-left: 1rem;
+}
+
+.boton {
+  background-color: white;
+  border: black solid 3px;
+}
+
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding-bottom: 10rem;
+  padding-top: 3rem;
+}
+
+.boton:hover {
+  background-color: #ccc;
+  border-color: black;
+}
