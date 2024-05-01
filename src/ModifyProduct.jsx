@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect} from "react";
 import {useNavigate, useParams } from 'react-router-dom';
-import AddProduct from './AddProduct.jsx'
+import {getProductById, modifyProduct} from "./js/productServices.js"
 
 const ModifyProduct = () => {
 
@@ -9,26 +9,46 @@ const ModifyProduct = () => {
     const {id} = useParams();
     const [products, setProducts] = useState([]);
 
-    const updateProduct = (e) => {
+    const updateProduct = async (e) => {
         e.preventDefault();
-            products.brand = document.getElementsByName("brand")[0].value;
-            products.category= document.getElementsByName("name")[0].value;
-            products.name= document.getElementsByName("category")[0].value;
-            products.price= document.getElementsByName("price")[0].value;
-            products.size= document.getElementsByName("size")[0].value;
-            products.color= document.getElementsByName("color")[0].value;
-            products.sex= document.querySelector('input[name="sex"]:checked').value;
-            products.stock= document.getElementsByName("stock")[0].value;
-        console.log(products)
-        alert("Modificado con exito");
-        navigate('../products')
+        const updatedProduct = {
+            id : id,
+            publisherId : products.publisherId,
+            brand : document.getElementsByName("brand")[0].value,
+            category: document.getElementsByName("name")[0].value,
+            name: document.getElementsByName("category")[0].value,
+            price: document.getElementsByName("price")[0].value,
+            size: document.getElementsByName("size")[0].value,
+            color: document.getElementsByName("color")[0].value,
+            sex : document.querySelector('input[name="sex"]:checked').value,
+            stock : document.getElementsByName("stock")[0].value,
+            image : products.image
+        }
+        const selectedFile = e.target.elements.image.files[0]; 
+        if (selectedFile) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const imageUrl = event.target.result;
+                updatedProduct.image = imageUrl; 
+                modifyProduct(updatedProduct, id); 
+                alert("Modificado con éxito");
+                navigate('../products');
+            };
+            reader.readAsDataURL(selectedFile); 
+        } else {
+            try {
+                await modifyProduct(updatedProduct, id);
+                alert("Modificado con éxito");
+                navigate('../products');
+            } catch (error) {
+                console.error('Error al modificar el producto:', error);
+            }
+        }
     };
 
     useEffect(() => {
-        fetch(`http://localhost:3000/products/${id}`)
-        .then((response) => response.json())
-        .then((data) => setProducts(data))
-        }, [])
+        getProductById(id).then((data) => setProducts(data));
+      }, [])
     
 
     return (
@@ -64,10 +84,16 @@ const ModifyProduct = () => {
 
             <label>Stock: </label><input type="number" min="1" name="stock" defaultValue={products.stock} placeholder={products.stock} required/>
 
-            
+            <div className='sector'>
+                    <label>Imagen: </label>
+                    <br />
+                    <input type="file" accept="image/*" name="image"/>
+            </div>
+
             <button type = "submit">Modificar</button>
         </form>
         <button onClick={() => navigate('../home')}>Back to Home</button>
+        <button onClick={() => navigate('../products')}>My products </button>
     </div>
 )
 }
