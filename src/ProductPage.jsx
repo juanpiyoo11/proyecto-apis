@@ -9,8 +9,8 @@ const ProductPage = () => {
   return (
     <div className="contenedor-todo">
       <div className="productos">
+        <div className='producto'><Products /></div>
         
-        <Products />
       </div>
       <div className="botones">
         <button className='boton' onClick={() => navigate('../addproducts')}>Agregar un nuevo producto</button>

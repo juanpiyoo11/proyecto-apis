@@ -9,6 +9,8 @@
   .productos {
     width: 100%;
     margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
   }
   
   .titulo {
@@ -19,7 +21,7 @@
   .botones {
     display: flex;
     justify-content: center; /* Centra los botones horizontalmente */
-    margin-top: 2rem; /* Ajusta el margen superior de los botones */
+    margin-top: 0rem; /* Ajusta el margen superior de los botones */
   }
   
   .boton {

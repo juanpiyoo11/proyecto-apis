@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import {useNavigate} from 'react-router-dom';
 import {getProducts, deleteProduct} from "./js/productServices.js"
-
+import './css/producto.css'
 
 const products = () => {
   const navigate = useNavigate();
@@ -24,9 +24,11 @@ const products = () => {
 
   return (
     <div >
-          <h1>Mis Productos</h1>
+          <h1 className='title'>Mis Productos</h1>
+          <div className="productos">
+
           {products.map((product) => (
-          <ul key={product.id}>
+          <ul className='producto' key={product.id}>
             <li><img src={product.image} alt="Imagen del producto"style={{ maxWidth: '200px', maxHeight: '200px' }}/></li>
             <li>Id: {product.id}</li>
             <li>Publicador: {product.publisherId}</li>
@@ -38,12 +40,13 @@ const products = () => {
             <li>Color: {product.color}</li>
             <li>Sexo: {product.sex}</li>
             <li>Stock: {product.stock}</li>
-            <li>
+            <li className='buttons'>
             <button onClick={() => deleteProducts(product.id)}>Eliminar</button>
             <button onClick={() => navigate(`../modifyProducts/${product.id}`)}>Modificar</button>
           </li>
         </ul>
       ))}
+          </div>
     </div>
   );
 }
