@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect} from "react";
 import {useNavigate, useParams } from 'react-router-dom';
 import {getProductById, modifyProduct} from "./js/productServices.js"
-
+import './css/addProduct.css'
 const ModifyProduct = () => {
 
     const navigate = useNavigate();
@@ -52,16 +52,41 @@ const ModifyProduct = () => {
     
 
     return (
-    <div>
+    <div className="contenedor_todo">
         <form onSubmit={updateProduct}>
-        <h1>Modificar un producto</h1>
-        <label>Id: </label>{products.id}
+            <h1 className='titulo'>Modificar un producto</h1>
+            <div className="sector">
+            <label>Id: </label> {products.id}    
+            </div>
+            <br />
+        <div className="sector">
             <label>Publicador: </label>{products.publisherId}
-            <label>Marca: </label><input type="text" name="brand" defaultValue={products.brand} placeholder={products.brand} required/>
-            <label>Nombre: </label><input type="text" name="name" defaultValue={products.name} placeholder={products.name} required/>
-            <label>Categoría: </label><input type="text" name="category" defaultValue={products.category} placeholder={products.category} required/>
-            <label>Precio: $</label><input type="number" name="price" defaultValue={products.price} placeholder={products.price} required/>
-            <label>Talle: </label><select name="size" required defaultValue={products.size}>
+
+        </div>
+        <br />
+        <div className="sector">
+
+            <label>Marca: </label> <br /><input type="text" name="brand" defaultValue={products.brand} placeholder={products.brand} required/>
+        </div>
+        <br />
+        <div className='sector'>
+
+            <label>Nombre: </label><br /><input type="text" name="name" defaultValue={products.name} placeholder={products.name} required/>
+        </div>
+        <br />
+        <div className="sector">
+
+            <label>Categoría: </label><br /><input type="text" name="category" defaultValue={products.category} placeholder={products.category} required/>
+        </div>
+        <br />
+        <div className="sector">
+            <label>Precio: $</label><br /><input type="number" name="price" defaultValue={products.price} placeholder={products.price} required/>
+
+        </div>
+        <br />
+        <div className="sector">
+
+            <label>Talle: </label><br /><select name="size" required defaultValue={products.size}>
                 <option value=""></option>
                 {[...Array(15).keys()].map((index) => (
                 <option key={index} value={7 + index * 0.5}>
@@ -69,11 +94,19 @@ const ModifyProduct = () => {
                 </option>
                 ))}
                 </select>
-            <label> Color: </label><input type="text" name="color" defaultValue={products.color} placeholder={products.color} required/>
+        </div>
+        <br />
+        <div className="sector">
+
+            <label> Color: </label><br /><input type="text" name="color" defaultValue={products.color} placeholder={products.color} required/>
+        </div>
+        <br />
+        <div className="sector">
+            <label > Sexo:</label>
+            <br />
             <label>
             <input type="radio" name="sex" value="F" required/> F
             </label>
-
             <label>
             <input type="radio" name="sex" value="M" required/> M
             </label>
@@ -82,18 +115,27 @@ const ModifyProduct = () => {
             <input type="radio" name="sex" value="Unisex" required /> Unisex
             </label>
 
-            <label>Stock: </label><input type="number" min="1" name="stock" defaultValue={products.stock} placeholder={products.stock} required/>
+        </div>
+        <br />
+        <div className="sector">
 
+                    <label>Stock: </label><br /><input type="number" min="1" name="stock" defaultValue={products.stock} placeholder={products.stock} required/>
+        </div>
+                
+<br />
             <div className='sector'>
                     <label>Imagen: </label>
                     <br />
                     <input type="file" accept="image/*" name="image"/>
             </div>
 
-            <button type = "submit">Modificar</button>
+        <div className="botones">
+            <button className='boton' type = "submit">Modificar</button>
+
+        <button className='boton' onClick={() => navigate('../home')}>Back to Home</button>
+        <button className='boton' onClick={() => navigate('../products')}>My products </button>
+        </div>
         </form>
-        <button onClick={() => navigate('../home')}>Back to Home</button>
-        <button onClick={() => navigate('../products')}>My products </button>
     </div>
 )
 }
