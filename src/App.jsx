@@ -3,23 +3,33 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './css/App.css'
 import Carrusel from './carrusel.jsx'
-
+import PaginaProducto from './paginaProducto.jsx'
 import Navbar from'./navbar'
+
+
+import * as React from 'react'
+
+import { ChakraProvider } from '@chakra-ui/react'
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      
-  <div className='contenedor-todo'>
-      <div className="navbar">
-      <Navbar/> 
+  <ChakraProvider> 
+
+    <div className='contenedor-todo'>
+
+      <div className='navbar'>
+        <Navbar/>
       </div>
-      <div className="carrusel">
-        <Carrusel  /> 
+      
+      <div className='paginaProducto'>
+        <PaginaProducto/>
       </div>
     </div>
 
+  </ChakraProvider>     
 
     </>
   )
