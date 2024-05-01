@@ -13,9 +13,6 @@ import ModifyProduct from './ModifyProduct.jsx'
 import {Routes, Route} from 'react-router-dom'
 
 
-import Navbar from'./navbar'
-
-
 import * as React from 'react'
 
 import { ChakraProvider } from '@chakra-ui/react'
@@ -34,9 +31,6 @@ function App() {
         <Navbar/>
       </div>
       
-      <div className='paginaProducto'>
-        <PaginaProducto/>
-      </div>
       <div className='abm'>
         <Routes>
           <Route path ='/'/>
@@ -45,7 +39,7 @@ function App() {
           <Route path ='/addproducts' element={<AddProduct/>} />
           <Route path ='/modifyproducts/:id' element={<ModifyProduct/>} />
         </Routes>
-    </div>
+      </div>
             <div>
             <Productos />
             </div>
@@ -55,11 +49,8 @@ function App() {
     </div>
 
   </ChakraProvider>     
+  </>
 
-
-      </div>
-    </div>
-    </>
   );
 }
 
