@@ -1,0 +1,37 @@
+.submenu-carrito {
+    position: absolute;
+    top: calc(100% + 10px); /* Añadido */
+    right: 20px; /* Añadido */
+    width: 300px; /* Ancho deseado */
+    background-color: white;
+    border: 1px solid black; /* Añadido */
+    border-radius: 5px; /* Añadido */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Añadido */
+    padding: 20px; /* Añadido */
+}
+
+.submenu-carrito .cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.submenu-carrito .subtitulo {
+    margin-bottom: 10px;
+}
+
+.submenu-carrito .productos {
+    /* Estilos para los productos */
+}
+
+.submenu-carrito .checkout {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
