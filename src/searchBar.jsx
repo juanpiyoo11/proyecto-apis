@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getProductsByNameBrand } from './js/productServices';
-
+import './css/searchFilter.css'
 const searchBar = () => {
     const {query} = useParams();
     const [products, setProducts] = useState([]);
@@ -89,8 +89,8 @@ const searchBar = () => {
     
   return (
     <>
+    <div className='contenedor-filtros'>
     <h1>Filtros</h1>
-    <div>
         <input type="text" name="brand" placeholder="Marca" value={filters.brand} onChange={handleFilterChange} />
         <input type="text" name="category" placeholder = "Categoria"value={filters.category} onChange={handleFilterChange} />
         <input type="number" name="minPrice" value={filters.minPrice} placeholder="Precio desde"onChange={handleFilterChange} />
@@ -110,16 +110,18 @@ const searchBar = () => {
             <option value="M">M</option>
             <option value="Unisex">Unisex</option>
         </select>
+        <div className='bot'>
         <button onClick={applyFilters}>Aplicar filtros</button>
+        </div>
         <button onClick={resetFilters}>Borrar filtros</button>
     </div>
-    <div>
+    <div className='contenedor-productos'>
         {products.map((product) => (
-        <div key={product.id} className="tarjeta_producto">
-          <img src={product.image} alt={product.name} className="imagen_producto" />
-          <h2 className="nombre_producto">{product.brand} {product.name}</h2>
-          <p className="precio_producto">${product.price}</p>
-          <button className="btn_comprar">Agregar al carrito</button>
+        <div key={product.id} className="tarjeta_producto_filter">
+          <img src={product.image} alt={product.name} className="imagen_producto_filter" />
+          <h2 className="nombre_producto_filter">{product.brand} {product.name}</h2>
+          <p className="precio_producto_filter">${product.price}</p>
+          <button className="btn_comprar_filter">Agregar al carrito</button>
         </div>
       ))}
     </div>
