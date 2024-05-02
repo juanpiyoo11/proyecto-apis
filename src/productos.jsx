@@ -1,15 +1,21 @@
-import React from "react";
-import data_productos from "./js/productos";
+import React, { useState, useEffect } from "react";
 import "./css/tarjeta_producto.css";
+import { getProducts } from "./js/productServices.js";
 
 const Productos = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    getProducts().then((data) => {
+      setProducts(data);
+    });
+  }, []);
   return (
     <div className="productos-container">
-      {data_productos.map((producto) => (
+      {products.map((producto) => (
         <div key={producto.id} className="tarjeta_producto">
-          <img src={producto.imagen} alt={producto.nombre} className="imagen_producto" />
-          <h2 className="nombre_producto">{producto.nombre}</h2>
-          <p className="precio_producto">${producto.precio}</p>
+          <img src={producto.image} alt={producto.name} className="imagen_producto" />
+          <h2 className="nombre_producto">{producto.name}</h2>
+          <p className="precio_producto">${producto.price}</p>
           <button className="btn_comprar">Agregar al carrito</button>
         </div>
       ))}
