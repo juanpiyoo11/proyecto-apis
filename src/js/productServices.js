@@ -23,6 +23,21 @@ export const getProductById = (id) => {
         .finally(() => console.log('promise is finished'));
 }
 
+export const getProductsByNameBrand = async (query) => {
+    try {
+      const response = await fetch('http://localhost:3000/products');
+      const data = await response.json();
+      const filteredProducts = data.filter(product =>
+        product.name.toLowerCase().includes(query.toLowerCase()) ||
+        product.brand.toLowerCase().includes(query.toLowerCase())
+      );
+      return filteredProducts;
+    } catch (error) {
+      console.error('Error al obtener los productos:', error);
+      return [];
+    }
+  };
+
 export const createProduct = (id, publisherId, brand, category, name, price, size, color, sex, stock, image) => {
 
     var raw = JSON.stringify({
