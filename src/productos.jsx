@@ -9,9 +9,10 @@ const Productos = () => {
       setProducts(data);
     });
   }, []);
+  const primerosSeis = products.slice(0, 6);
   return (
     <div className="productos-container">
-      {products.map((producto) => (
+      {primerosSeis.map((producto) => (
         <div key={producto.id} className="tarjeta_producto">
           <img src={producto.image} alt={producto.name} className="imagen_producto" />
           <h2 className="nombre_producto">{producto.name}</h2>
