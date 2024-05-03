@@ -25,9 +25,7 @@ function App() {
             <Navbar />
           </div>
 
-          <div className="paginaProducto">
-            <PaginaProducto />
-          </div>
+          
           <div className="abm">
             <Routes>
               <Route path="/" />
@@ -37,7 +35,7 @@ function App() {
               <Route path="/modifyproducts/:id" element={<ModifyProduct />} />
             </Routes>
           </div>
-          <div>
+          <div className="productosApp">
             <Productos />
           </div>
           <div className="footer">
