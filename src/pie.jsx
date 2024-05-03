@@ -5,8 +5,10 @@ import linkedin from './imagenes/linkedin.svg'
 import skoLogo from './imagenes/sko.png'
 
 import './css/footer.css'
+import { useNavigate } from 'react-router-dom'
 
 function Pie (){
+    const navigate = useNavigate();
 
 
     return(
@@ -18,7 +20,7 @@ function Pie (){
 
                     <div className='contenedor-logo'>
 
-                        <img className='sko' src={skoLogo} alt="" />
+                        <img className='sko' src={skoLogo} alt="" onClick={() => navigate('/home')}/>
 
                     </div>
 

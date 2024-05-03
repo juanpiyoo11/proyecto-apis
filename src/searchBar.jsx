@@ -1,14 +1,29 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getProductsByNameBrand } from './js/productServices';
+import { getProductsByNameBrand, getProducts } from './js/productServices';
 import './css/searchFilter.css'
 const searchBar = () => {
     const {query} = useParams();
+    const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const [originalProducts, setOriginalProducts] = useState([]);
+    // useEffect(() => {
+    //     getProductsByNameBrand(query).then((data) => {setProducts(data); setOriginalProducts(data)})
+    // }, [query, setProducts]);
+
     useEffect(() => {
-        getProductsByNameBrand(query).then((data) => {setProducts(data); setOriginalProducts(data)})
+        if (query === "emptySearch") {
+            getProducts().then((data) => {
+                setProducts(data);
+                setOriginalProducts(data);
+            });
+        } else {
+            getProductsByNameBrand(query).then((data) => {
+                setProducts(data);
+                setOriginalProducts(data);
+            });
+        }
     }, [query, setProducts]);
 
     const [filters, setFilters] = useState({
@@ -118,7 +133,7 @@ const searchBar = () => {
     <div className='contenedor-productos'>
         {products.map((product) => (
         <div key={product.id} className="tarjeta_producto_filter">
-          <img src={product.image} alt={product.name} className="imagen_producto_filter" />
+          <img src={product.image} alt={product.name} className="imagen_producto_filter" onClick = {() => navigate(`../product/${product.id}`)}/>
           <h2 className="nombre_producto_filter">{product.brand} {product.name}</h2>
           <p className="precio_producto_filter">${product.price}</p>
           <button className="btn_comprar_filter">Agregar al carrito</button>
