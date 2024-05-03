@@ -16,12 +16,11 @@ import {
 import {MdCancel, MdOutlinePayment} from "react-icons/md";
 import {limpiarCarrito, obtenerItemsCarrito} from "../js/carritoService.js";
 import {useNavigate} from "react-router-dom";
-
+import {deleteProduct} from "../js/productServices.js"
 
 export default function PaymentSuccesful() {
 
     const toast = useToast();
-    const navegate=useNavigate();
 
 
     return (
@@ -35,6 +34,10 @@ export default function PaymentSuccesful() {
                             duration: 5000,
                             isClosable: true,
                         })
+                        const carrito = obtenerItemsCarrito();
+                        {carrito.map((producto) => (
+                            deleteProduct(producto.id)
+                        ))}
                         limpiarCarrito();
                         
                         setTimeout(() => {

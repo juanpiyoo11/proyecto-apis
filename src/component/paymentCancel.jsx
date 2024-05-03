@@ -24,7 +24,7 @@ export default function PaymentCancel() {
     return (
         <>
             <Button flex='1' variant='ghost' colorScheme='red' leftIcon={<MdCancel />}
-                onClick={() =>
+                onClick={() =>{
                     toast({
                         title: 'Payment Cancelled.',
                         description: "Payment Cancelled. Please try again.",
@@ -32,7 +32,7 @@ export default function PaymentCancel() {
                         duration: 5000,
                         isClosable: true,
                     })
-                }
+                }}
             >
                 Payment Cancelled
             </Button>
