@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getProductsByNameBrand, getProducts } from './js/productServices';
 import './css/searchFilter.css'
+import Carrito from "./component/carrito.jsx";
 const searchBar = () => {
     const {query} = useParams();
     const navigate = useNavigate();
@@ -136,7 +137,7 @@ const searchBar = () => {
           <img src={product.image} alt={product.name} className="imagen_producto_filter" onClick = {() => navigate(`../product/${product.id}`)}/>
           <h2 className="nombre_producto_filter">{product.brand} {product.name}</h2>
           <p className="precio_producto_filter">${product.price}</p>
-          <button className="btn_comprar_filter">Agregar al carrito</button>
+            <Carrito product={product} />
         </div>
       ))}
     </div>
