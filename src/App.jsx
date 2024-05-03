@@ -37,7 +37,7 @@ function App() {
 
                     <div className="abm">
                         <Routes>
-                            <Route path="/" action={redirectHome}/>
+                            <Route path="/" element={<Home/>} />
                             <Route path="/home" element={<Home/>}/>
                             <Route path="/products" element={<ProductPage/>}/>
                             <Route path="/product/:id" element={<PaginaProducto/>}/>
