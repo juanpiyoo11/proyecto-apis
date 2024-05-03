@@ -52,16 +52,25 @@ function navbar(){
         setCarritoVisible(false);
     };
 
+    const [query, setQuery] = useState('');
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        navigate(`/resultados/${query}`, { replace: true });
+      };
     return(
         <>
         <div className='parteSuperior'>
             <div className='contenedor-1'>
                 <div className='contenedor-logo'>
-                    <img className='sko' src={skoLogo} alt="" />
+                    <img className='sko' src={skoLogo} alt="" onClick={() => navigate('/home')}/>
                 </div>
                 <div className='contenedor-buscador'>
-                    <input className='buscador' type="text" placeholder='  Buscar...'/>
-                    <button className='submit'><img src={search} alt="Buscar" /></button>
+                    {/* <input className='buscador' type="text" placeholder='  Buscar...'/>
+                    <button className='submit'><img src={search} alt="Buscar" /></button> */}
+                    <form onSubmit={handleSubmit}>
+                        <input className='buscador' type="text" placeholder='  Buscar...' value={query} onChange={(e) => setQuery(e.target.value)}/>
+                        <button className='submit' type="submit"> <img src={search} alt="Buscar" /></button>
+                    </form>
                 </div>
                 <div className='contenedor-session'>
                     <div className='user' onMouseEnter={handleUserEnter} onMouseLeave={handleUserLeave}>

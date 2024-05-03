@@ -1,11 +1,19 @@
-import React from "react";
-import data_productos from "./js/productos";
+
+import React, { useState, useEffect } from "react";
 import "./css/tarjeta_producto.css";
+import { getProducts } from "./js/productServices.js";
 
 const Productos = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    getProducts().then((data) => {
+      setProducts(data);
+    });
+  }, []);
+  const primerosSeis = products.slice(0, 6);
   return (
     <div className="productos-container">
-      {data_productos.map((producto) => (
+      {primerosSeis.map((producto) => (
         <div key={producto.id} className="tarjeta_producto">
           <img src={producto.imagen} alt={producto.nombre} className="imagen_producto" />
           <h2 className="nombre_producto">{producto.nombre}</h2>
