@@ -154,33 +154,37 @@
     font-weight: bold; 
     text-decoration: none;
 }
-
 .submenu {
     display: none;
     position: absolute;
     top: 100%; 
-    left: 0;
-    width: 100vw; /* Ancho del submenu al 100% del viewport */
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    width: 100%;
     list-style-type: none;
-    padding: 0;
-    background-color: white;
-    color: black;
-    font-weight: bold; 
+    padding: 1rem 0;
+    background-color: #fff;
+    border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1;
-    column-count: 3; /* Dividimos el submenu en tres columnas */
-    column-gap: -10rem; /* Espacio entre las columnas */
-    text-align: center; /* Centramos el texto en cada columna */
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+.submenu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
 }
 
 
 .submenu-column {
-    flex: 0 0 33.33%; /* Cambiamos el ancho de la columna para que cada una ocupe 1/3 del ancho */
-   display: flex;
-   flex-direction: column;
-   justify-content: initial;
-   align-items: initial;
-   text-align: end;
+    flex-basis: calc(15.5% - 0.5rem); /* Ajustamos el ancho de cada columna */
+    padding: 0.5rem;
+    margin-bottom: 1rem; /* Agregar margen inferior entre columnas */
+    text-align: center;
 }
 
 .submenu-column1 {
@@ -188,6 +192,7 @@
    display: flex;
    flex-direction: column;
    justify-content: center;
+   
 }
 .submenu-column2 {
     flex: 0 0 33.33%; /* Cambiamos el ancho de la columna para que cada una ocupe 1/3 del ancho */
@@ -199,16 +204,19 @@
 
 
 .submenu li {
-    break-inside: avoid-column; /* Evitamos que los elementos se dividan entre columnas */
-    margin-bottom: -2rem; /* Espacio entre cada marca */
+    
+    margin: 0.3rem 0; /* Ajustar el margen vertical entre elementos */
 }
 
 .submenu li a {
-    display: block; /* Hacemos que cada marca ocupe todo el ancho disponible */
-    color: black; 
-    text-decoration: none; 
-    padding: 1rem;
-    position: relative; /* Agregamos posición relativa para alinear los pseudoelementos */
+    color: #000;
+    text-decoration: none;
+    font-size: 1.4rem;
+    display: block;
+    font-weight: bold;
+    padding: 0.5rem;
+    text-align: center;
+    transition: color 0.3s ease-in-out;
 }
 .decoracion-enlace{
     font-size: 1.2rem;
@@ -224,6 +232,10 @@
     
 }
 
+.menu:hover .submenu {
+    opacity: 1;
+    pointer-events: auto;
+}
 .submenu:hover{
     display: block;
     border-top: black solid 3px;

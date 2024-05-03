@@ -104,38 +104,50 @@ function navbar(){
                         <a className="nombre" onClick={() => navigate('/resultados/emptySearch')}>Calzado</a>
                         <div className="nombre menu1" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Marca</div>
                         <ul className={`submenu uno ${menuVisible ? 'show' : ''}`} onMouseEnter={handleSubmenuEnter} onMouseLeave={handleSubmenuLeave}>
-                        <div className="submenu-column menu1">
-                            <li><a className='decoracion-enlace menu1' onClick={() => navigate('/resultados/puma')}>Puma</a></li>
-                            <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/adidas')}>Adidas</a></li>
-                            <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/nike')}>Nike</a></li>
-                        </div>
-                        <div className="submenu-column1 menu1">
-                            <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/crocs')}>Crocs</a></li>
-                            <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/converse')}>Converse</a></li>
-                            <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/vans')}>Vans</a></li>
-                        </div>
-                        <div className="submenu-column2 menu1">
-                            <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/rebook')}>Rebook</a></li>
-                            <li><a className='decoracin-enlace' onClick={() => navigate('/resultados/fila')}>Fila</a></li>
-                        </div>
+                            <div className="submenu-container">
+                                <div className="submenu-column menu1">
+                                    <li><a className='decoracion-enlace menu1' onClick={() => navigate('/resultados/puma')}>Puma</a></li>
+                                    <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/adidas')}>Adidas</a></li>
+                                    <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/nike')}>Nike</a></li>
+                                    
+                                </div>
+                                <div className="submenu-column menu1">
+                                <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/crocs')}>Crocs</a></li>
+                                    <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/rebook')}>Rebook</a></li>
+                                    <li><a className='decoración-enlace' onClick={() => navigate('/resultados/fila')}>Fila</a></li>
+                                </div>
+                                <div className="submenu-column menu1">
+                                    
+                                    <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/rebook')}>Rebook</a></li>
+                                    <li><a className='decoración-enlace' onClick={() => navigate('/resultados/fila')}>Fila</a></li>
+                                </div>
+
+                            </div>
                         </ul>
+
 
                         <div className="nombre menu1" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Estilo</div>
                         <ul className={`submenu uno ${menuVisible ? 'show' : ''}`} onMouseEnter={handleSubmenuEnter} onMouseLeave={handleSubmenuLeave}>
-                        <div className="submenu-column menu1">
-                            <li><a className='decoracion-enlace menu1' onClick={() => navigate('/resultados/street')}>Streetwear</a></li>
+                        <div className="submenu-container">
+                        
+                            <div className="submenu-column menu1">
                             <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/casual')}>Casual</a></li>
                             <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/skate')}>Skate</a></li>
-                        </div>
-                        <div className="submenu-column1 menu1">
                             <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/retro')}>Retro</a></li>
+                            </div>
+                            <div className="submenu-column menu1">
                             <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/running')}>Running</a></li>
                             <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/slip-on')}>Slip-on</a></li>
-                        </div>
-                        <div className="submenu-column2 menu1">
                             <li><a className='decoracin-enlace' onClick={() => navigate('/resultados/high-top')}>High-top</a></li>
+                            </div>
+                            <div className="submenu-column menu1">
+                            <li><a className='decoracion-enlace ' onClick={() => navigate('/resultados/street')}>Streetwear</a></li>
                             <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/eco-friendly')}>Eco-friendly</a></li>
+                            </div>
+                        
                         </div>
+
+                        
                         </ul>
                     </div>
                 </div>
