@@ -1,5 +1,4 @@
 
-import Productos from "./productos.jsx";
 import { useState } from 'react'
 import './css/App.css'
 import Navbar from'./navbar'
@@ -12,6 +11,7 @@ import ModifyProduct from './ModifyProduct.jsx'
 import {Routes, Route} from 'react-router-dom'
 import Home from './Home.jsx'
 import SearchBar from './searchBar.jsx'
+import Carrusel from './carrusel.jsx'
 
 
 import * as React from 'react'
@@ -34,14 +34,12 @@ function App() {
           <div className="abm">
             <Routes>
               <Route path="/" />
-              <Route path="/home" element={<Carrusel />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/products" element={<ProductPage />} />
               <Route path="/addproducts" element={<AddProduct />} />
+              <Route path="/resultados/:query" element={<SearchBar/>} />
               <Route path="/modifyproducts/:id" element={<ModifyProduct />} />
             </Routes>
-          </div>
-          <div className="productosApp">
-            <Productos />
           </div>
           <div className="footer">
             <Pie />

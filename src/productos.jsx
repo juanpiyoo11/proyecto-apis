@@ -15,9 +15,9 @@ const Productos = () => {
     <div className="productos-container">
       {primerosSeis.map((producto) => (
         <div key={producto.id} className="tarjeta_producto">
-          <img src={producto.imagen} alt={producto.nombre} className="imagen_producto" />
-          <h2 className="nombre_producto">{producto.nombre}</h2>
-          <p className="precio_producto">${producto.precio}</p>
+          <img src={producto.image} alt={producto.name} className="imagen_producto" />
+          <h2 className="nombre_producto">{producto.name}</h2>
+          <p className="precio_producto">${producto.price}</p>
           <button className="btn_comprar" onClick={() => agregarProducto(producto)}>Agregar al carrito</button>
         </div>
       ))}
