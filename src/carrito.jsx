@@ -20,9 +20,16 @@ function Carrito({ cerrarCarrito }) {
                 <div className='productos'>
                     {productos.map((producto, index) => (
                         <div key={index} className='producto'>
+                            <div className="imagen">
                             <img src={producto.image} alt={producto.name} />
+
+                            </div>
+                            <br />
+                            <div className="info">
+
                             <div>{producto.name}</div>
                             <div>${producto.price}</div>
+                            </div>
                         </div>
                     ))}
                 </div>
