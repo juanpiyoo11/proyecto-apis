@@ -1,6 +1,7 @@
-.contenedor-todo{
-    height: 100%;
-    width: 100%;
+.contenedor-todo {
+    min-height: 100vh; /* Altura mínima del contenedor */
+    display: flex;
+    flex-direction: column;
 }
 
 .navbar{
@@ -9,7 +10,7 @@
 }
 
 .carrusel{
-    height: 60vh;
+    height: 100%;
     width: 100%;
 }
 
@@ -31,6 +32,10 @@
     justify-content: center;
 }
 
+.productosAPP{
+    width: 100%;
+    height: 30vh;
+}
 .productos{
     width: 100%;
     height: 60vh;

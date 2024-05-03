@@ -1,4 +1,5 @@
 
+import Productos from "./productos.jsx";
 import { useState } from 'react'
 import './css/App.css'
 import Navbar from'./navbar'
@@ -17,36 +18,37 @@ import * as React from 'react'
 
 import { ChakraProvider } from '@chakra-ui/react'
 
+
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
+      <ChakraProvider>
+        <div className="contenedor-todo">
+          <div className="navbar">
+            <Navbar />
+          </div>
 
-  <ChakraProvider> 
-
-    <div className='contenedor-todo'>
-
-      <div className='navbar'>
-        <Navbar/>
-      </div>
-      
-      <div className='abm'>
-        <Routes>
-          <Route path ='/'/>
-          <Route  path ='/home' element={<Home/>} />
-          <Route  path ='/products' element={<ProductPage/>} />
-          <Route  path ='/product/:id' element={<PaginaProducto/>} />
-          <Route path ='/addproducts' element={<AddProduct/>} />
-          <Route path ='/modifyproducts/:id' element={<ModifyProduct/>} />
-          <Route path ='/resultados/:query' element={<SearchBar/>} />
-        </Routes>
-      </div>
-        <Pie />
-    </div>
-
-  </ChakraProvider>     
-  </>
+          
+          <div className="abm">
+            <Routes>
+              <Route path="/" />
+              <Route path="/home" element={<Carrusel />} />
+              <Route path="/products" element={<ProductPage />} />
+              <Route path="/addproducts" element={<AddProduct />} />
+              <Route path="/modifyproducts/:id" element={<ModifyProduct />} />
+            </Routes>
+          </div>
+          <div className="productosApp">
+            <Productos />
+          </div>
+          <div className="footer">
+            <Pie />
+          </div>
+        </div>
+      </ChakraProvider>
+    </>
 
   );
 }
