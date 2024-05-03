@@ -85,20 +85,16 @@ export default function CardCompo({ products }) {
                 <Th></Th>
                 <Th isNumeric>{total}</Th>
               </Tr>
-              {total > 100000 && (
-                <>
-                  <Tr>
-                    <Th>Descuento (5%)</Th>
-                    <Th></Th>
-                    <Th isNumeric>-{descuento.toFixed(0)}</Th>
-                  </Tr>
-                  <Tr>
-                    <Th>Total con descuento</Th>
-                    <Th></Th>
-                    <Th isNumeric>{totalConDescuento.toFixed(0)}</Th>
-                  </Tr>
-                </>
-              )}
+              <Tr>
+                <Th>Descuento (5%)</Th>
+                <Th></Th>
+                <Th isNumeric>-{descuento.toFixed(0)}</Th>
+              </Tr>
+              <Tr>
+                <Th>Total con descuento</Th>
+                <Th></Th>
+                <Th isNumeric>{totalConDescuento.toFixed(0)}</Th>
+              </Tr>
             </Tfoot>
           </Table>
         </TableContainer>
