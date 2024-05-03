@@ -25,10 +25,41 @@ import {
   TableCaption,
   TableContainer,
 } from '@chakra-ui/react'
+import {useEffect, useState} from "react";
+import {obtenerItemsCarrito} from "../js/carritoService.js";
 
 
 
-export default function CardCompo() {
+export default function CardCompo({products}) {
+
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+    const itemsCarrito = obtenerItemsCarrito();
+    setProductos(itemsCarrito);
+  }, []);
+
+  const productCounts = productos.reduce((acc, product) => {
+
+    if (acc[product.name]) {
+      acc[product.name].quantity += 1;
+    } else {
+      acc[product.name] = {
+        name: product.name,
+        price: product.price,
+        quantity: 1
+      };
+    }
+
+    return acc;
+  }, {});
+
+  const productList = Object.values(productCounts);
+
+  const total = productList.reduce((acc, product) => {
+    return acc + (product.price * product.quantity);
+  }, 0);
+
   return (
     <Card maxW='xl'>
     <CardHeader>
@@ -60,27 +91,19 @@ export default function CardCompo() {
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>Adidas Airforce</Td>
-              <Td>1</Td>
-              <Td isNumeric>25.4</Td>
-            </Tr>
-            <Tr>
-              <Td>Adidas Airforce</Td>
-              <Td>1</Td>
-              <Td isNumeric>30.48</Td>
-            </Tr>
-            <Tr>
-              <Td>Adidas Airforce</Td>
-              <Td>1</Td>
-              <Td isNumeric>0.91444</Td>
-            </Tr>
+            {productList.map((product, index) => (
+                <Tr key={index}>
+                  <Td>{product.name}</Td>
+                  <Td>{product.quantity}</Td>
+                  <Td isNumeric>{product.price}</Td>
+                </Tr>
+            ))}
           </Tbody>
           <Tfoot>
             <Tr>
-              <Th>Producto</Th>
-              <Th>Cantidad</Th>
-              <Th isNumeric>Precio</Th>
+              <Th>Total</Th>
+              <Th></Th>
+              <Th isNumeric>{total}</Th>
             </Tr>
           </Tfoot>
         </Table>
@@ -96,12 +119,6 @@ export default function CardCompo() {
         },
       }}
     >
-      <Button flex='1' variant='ghost' colorScheme='green' leftIcon={<MdOutlinePayment />}>
-        Payment
-      </Button>
-      <Button flex='1' variant='ghost' colorScheme='red' leftIcon={<MdCancel />}>
-        Cancel payment
-      </Button>
     </CardFooter>
   </Card>
   );
