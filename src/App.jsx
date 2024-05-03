@@ -10,6 +10,7 @@ import AddProduct from './AddProduct.jsx'
 import ModifyProduct from './ModifyProduct.jsx'
 import {Routes, Route} from 'react-router-dom'
 import Home from './Home.jsx'
+import SearchBar from './searchBar.jsx'
 
 
 import * as React from 'react'
@@ -37,6 +38,7 @@ function App() {
           <Route  path ='/products' element={<ProductPage/>} />
           <Route path ='/addproducts' element={<AddProduct/>} />
           <Route path ='/modifyproducts/:id' element={<ModifyProduct/>} />
+          <Route path ='/resultados/:query' element={<SearchBar/>} />
         </Routes>
       </div>
         <Pie />

@@ -1,0 +1,112 @@
+.contenedor-filtros {
+    width: 20%; /* Ancho de la columna de filtros */
+    margin-right: 20px; /* Margen derecho entre filtros y productos */
+    padding: 20px; /* Espaciado interno */
+    background-color: #f9f9f9; /* Color de fondo */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+.contenedor-productos{
+    padding-top: 1rem;
+    width: 70%; /* Restamos 10px para dejar espacio para el margen */
+    height: 50%;
+    display: flex;
+    flex-wrap: wrap;
+}
+h1 {
+    font-size: 1.5rem; /* Tamaño de fuente más grande */
+    color: black; /* Color de texto oscuro */
+    margin-bottom: 20px; /* Margen inferior */
+    font-weight:bold;
+}
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%; /* Ancho completo */
+    margin-bottom: 15px; /* Margen inferior */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde delgado */
+    border-radius: 4px; /* Bordes redondeados */
+    outline: none; /* Quitamos el borde al hacer clic */
+}
+
+.contenedor-filtros select {
+    background-color: #fff;
+}
+input::placeholder{
+    color: black;
+}
+.bot{
+    padding-bottom: 1rem;
+}
+.contenedor-filtros button {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.contenedor-filtros button:hover {
+    background-color: #ccc;
+    color: black;
+}
+
+
+.tarjeta_producto_filter {
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 30%;
+    text-align: center;
+   
+    
+    
+   
+  }
+
+  
+.imagen_producto_filter {
+    width: 100%;
+    height: auto;
+  border: solid #cacaca 2px;
+  }
+  .nombre_producto_filter {
+    font-size: 1.2em;
+    margin: 5px 0;
+    display: flex;
+    justify-content: initial;
+  
+  }
+  .precio_producto_filter {
+    margin-top: 0em;
+    color: black;
+    font-weight: bold 700;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: initial;
+    font-weight:bold;
+  
+  }
+  
+  .btn_comprar_filter {
+    background-color: #121212;
+    color: #fff;
+    width: 100%;
+    height: 10%;
+   
+    margin-top: 1rem;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 0.8rem;
+  }
+
+ .btn_comprar_filter:hover {
+    background-color: #ccc;
+    color: black;
+    
+}
