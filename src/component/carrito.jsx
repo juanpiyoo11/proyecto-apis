@@ -28,6 +28,6 @@ export default function Carrito({product}) {
     }, [carrito]);
 
     return (
-            <Button onClick={agregarAlCarrito} colorScheme='green'> Add to carrito </Button>
+            <Button onClick={agregarAlCarrito} colorScheme='blue'> Add to Cart </Button>
     )
 }

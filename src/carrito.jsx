@@ -43,6 +43,7 @@ function Carrito({ cerrarCarrito }) {
                            </div>
                        </div>
                    </div>
+
                     ))}
                 </div>
             ) : (

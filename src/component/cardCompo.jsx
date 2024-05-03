@@ -52,7 +52,7 @@ export default function CardCompo({ products }) {
         <Flex spacing="4">
           <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
             <Box>
-              <Heading size="sm">Chequemos tu carrito</Heading>
+              <Heading size="sm">Veamos tu carrito</Heading>
               <Text>Estos son los productos de tu carrito</Text>
             </Box>
           </Flex>
@@ -61,7 +61,7 @@ export default function CardCompo({ products }) {
       <CardBody>
         <TableContainer>
           <Table variant="striped" colorScheme="teal">
-            <TableCaption>Productos en carrito</TableCaption>
+            <TableCaption></TableCaption>
             <Thead>
               <Tr>
                 <Th>Prooducto</Th>
