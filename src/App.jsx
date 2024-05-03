@@ -1,18 +1,23 @@
-import { useState } from "react";
-import "./css/App.css";
-import Carrusel from "./carrusel.jsx";
-import Navbar from "./navbar";
-import Pie from "./pie.jsx";
-import PaginaProducto from "./paginaProducto.jsx";
+
 import Productos from "./productos.jsx";
+import { useState } from 'react'
+import './css/App.css'
+import Navbar from'./navbar'
+import Pie from './pie.jsx'
+import PaginaProducto from './paginaProducto.jsx'
 
-import ProductPage from "./ProductPage.jsx";
-import AddProduct from "./AddProduct.jsx";
-import ModifyProduct from "./ModifyProduct.jsx";
-import { Routes, Route } from "react-router-dom";
-import * as React from "react";
+import ProductPage from './ProductPage.jsx'
+import AddProduct from './AddProduct.jsx'
+import ModifyProduct from './ModifyProduct.jsx'
+import {Routes, Route} from 'react-router-dom'
+import Home from './Home.jsx'
+import SearchBar from './searchBar.jsx'
 
-import { ChakraProvider } from "@chakra-ui/react";
+
+import * as React from 'react'
+
+import { ChakraProvider } from '@chakra-ui/react'
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -44,6 +49,7 @@ function App() {
         </div>
       </ChakraProvider>
     </>
+
   );
 }
 

@@ -17,18 +17,20 @@
     width: 60%;
     height: 100%;
     
-    
+    cursor: pointer;
     justify-content: center;
     align-items: center;
 }
 .contenedor-buscador{
     width: 50%;
-    height: 100%;
+    height: auto;
     
     display: flex;
     align-items: center;
     justify-content: center;
     color: #24262B;
+    position: relative;
+    right: -3rem;
     
 }
 
@@ -37,26 +39,30 @@
     border: none;
     cursor: pointer;
     
-    position: flex; 
+    position: absolute; 
     padding-top: 1.3rem;
     justify-content: center;
     align-items: center;
-    transform: translateX(-5rem) ;
+    transform: translateX(4.5rem) ;
     
     
 }
 .buscador{
-    
+    flex: 1;
+    padding-right: 10px;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    margin-top: 0.5rem;
+    margin-top: 0.8rem;
+    position: relative;
+    right: 7rem;
     background-color: white;
     border: solid white 3px;
-    width: 75%;
+    width: 100%;
     height: 35%;
     color: black;
 }
+
 
 .carrito{
     width: 15%;
@@ -111,6 +117,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: -10px; 
+   
 }
 
 .menu {
@@ -120,6 +127,7 @@
     justify-content: center;
     width: 100%;
     margin: -10px;
+    
 }
 
 
@@ -132,6 +140,8 @@
     color: black; 
     font-weight: bold; 
     text-decoration: none;
+    font-size: 120%;
+    margin-left: 1.3rem;
 }
 
 .nombre2 {
@@ -145,31 +155,66 @@
     text-decoration: none;
 }
 
-
 .submenu {
     display: none;
     position: absolute;
-    top: 93%;
+    top: 100%; 
     left: 0;
-    width: 100%;
+    width: 100vw; /* Ancho del submenu al 100% del viewport */
     list-style-type: none;
     padding: 0;
-    justify-content: center;
-    text-align: center;
-    margin: 0;
-    
     background-color: white;
     color: black;
     font-weight: bold; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1;
+    column-count: 3; /* Dividimos el submenu en tres columnas */
+    column-gap: -10rem; /* Espacio entre las columnas */
+    text-align: center; /* Centramos el texto en cada columna */
+}
+
+
+.submenu-column {
+    flex: 0 0 33.33%; /* Cambiamos el ancho de la columna para que cada una ocupe 1/3 del ancho */
+   display: flex;
+   flex-direction: column;
+   justify-content: initial;
+   align-items: initial;
+   text-align: end;
+}
+
+.submenu-column1 {
+    flex: 0 0 33.33%; /* Cambiamos el ancho de la columna para que cada una ocupe 1/3 del ancho */
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+.submenu-column2 {
+    flex: 0 0 33.33%; /* Cambiamos el ancho de la columna para que cada una ocupe 1/3 del ancho */
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   text-align: initial;
+}
+
+
+.submenu li {
+    break-inside: avoid-column; /* Evitamos que los elementos se dividan entre columnas */
+    margin-bottom: -2rem; /* Espacio entre cada marca */
 }
 
 .submenu li a {
+    display: block; /* Hacemos que cada marca ocupe todo el ancho disponible */
     color: black; 
     text-decoration: none; 
-    padding: 1rem 1rem; 
+    padding: 1rem;
+    position: relative; /* Agregamos posición relativa para alinear los pseudoelementos */
 }
+.decoracion-enlace{
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
 .menu1:hover + .uno,
 .menu2:hover + .dos {
     display: block;
@@ -192,27 +237,23 @@
 }
 
 
-.menu1:hover::before, .menu2:hover::before, .nombre:hover::before
-.menu1:hover::after, .menu2:hover::after, .nombre:hover::after{
-    content: ''; 
+.submenu li a:hover::before,
+.submenu li a:hover::after {
+    
     position: absolute; 
-    left: 0; 
-    right: 0; 
+    left: 50%; /* Alineamos el punto de inicio de las líneas en el centro */
+    transform: translateX(-50%); /* Centramos las líneas */
+    width: 40%; /* Ajustamos la longitud de las líneas */
     height: 2px;
-    background-color: black; 
-    color: black;
+   
 }
 
-
-.menu1:hover::before, .menu2:hover::before, .nombre:hover::before{
-    top: 0; 
-    margin-top: 0.6rem; 
+.submenu li a:hover::before {
+    top: -5px; /* Posicionamos la línea superior 5px hacia arriba */
 }
 
-
-.menu1:hover::after, .menu2:hover::after, .nombre:hover::after {
-    bottom: 0;
-    margin-bottom: 0.5rem;
+.submenu li a:hover::after {
+    bottom: -5px; /* Posicionamos la línea inferior 5px hacia abajo */
 }
 
 

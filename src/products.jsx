@@ -10,7 +10,7 @@ const products = () => {
 
   useEffect(() => {
     getProducts().then((data) => setProducts(data));
-  })
+  }, []);
   // useEffect(() => {
   //     fetch("http://localhost:3000/products")
   //     .then((response) => response.json())
@@ -18,8 +18,14 @@ const products = () => {
   // }, [])
 
   const deleteProducts = (id) => {
-    deleteProduct(id);
-    alert(`Producto ${id} eliminado con exito`)
+    try {
+      deleteProduct(id);
+      const updatedProducts = products.filter(product => product.id !== id);
+      setProducts(updatedProducts);
+      alert(`Producto ${id} eliminado con éxito`);
+    } catch (error) {
+      console.error('Error al eliminar el producto:', error);
+    }
 }
 
   return (

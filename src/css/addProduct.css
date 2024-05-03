@@ -67,3 +67,7 @@ label {
   background-color: #ccc;
   border-color: black;
 }
+
+input{
+  border: solid #ccc 1px;
+}
