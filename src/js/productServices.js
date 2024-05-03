@@ -29,7 +29,8 @@ export const getProductsByNameBrand = async (query) => {
       const data = await response.json();
       const filteredProducts = data.filter(product =>
         product.name.toLowerCase().includes(query.toLowerCase()) ||
-        product.brand.toLowerCase().includes(query.toLowerCase())
+        product.brand.toLowerCase().includes(query.toLowerCase()) ||
+        product.category.toLowerCase().includes(query.toLowerCase())
       );
       return filteredProducts;
     } catch (error) {
@@ -75,4 +76,47 @@ export const modifyProduct = (product, id) => {
         },
         body: JSON.stringify(product)
     });
+}
+
+export const getProductByBrand = async (query) => {
+    try {
+        const response = await fetch('http://localhost:3000/products');
+        const data = await response.json();
+        const filteredProducts = data.filter(product =>
+        product.brand.toLowerCase().includes(query.toLowerCase())
+        );
+        return filteredProducts;
+    } catch (error) {
+        console.error('Error al obtener los productos:', error);
+        return [];
+    }
+}
+export const getProductByCategory = async (query) => {
+    try {
+        const response = await fetch('http://localhost:3000/products');
+        const data = await response.json();
+        const filteredProducts = data.filter(product =>
+        product.category.toLowerCase().includes(query.toLowerCase())
+        );
+        return filteredProducts;
+    } catch (error) {
+        console.error('Error al obtener los productos:', error);
+        return [];
+    }
+}
+
+export const getProductBySex = async (query) => {
+    try {
+        const response = await fetch('http://localhost:3000/products');
+        const data = await response.json();
+        const filteredProducts = data.filter(product =>
+            product.sex.toLowerCase().includes(query.toLowerCase())
+        ).filter(product =>
+            product.sex.toLowerCase() === "unisex"
+        );
+        return filteredProducts;
+    } catch (error) {
+        console.error('Error al obtener los productos:', error);
+        return [];
+    }
 }

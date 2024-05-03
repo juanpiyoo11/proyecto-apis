@@ -75,6 +75,7 @@ input::placeholder{
     width: 100%;
     height: auto;
   border: solid #cacaca 2px;
+  cursor: pointer;
   }
   .nombre_producto_filter {
     font-size: 1.2em;
