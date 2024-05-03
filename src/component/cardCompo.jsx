@@ -85,7 +85,7 @@ export default function CardCompo({ products }) {
                 <Th></Th>
                 <Th isNumeric>{total}</Th>
               </Tr>
-              {total > 100000 && (
+              {total > 150000 && (
                 <>
                   <Tr>
                     <Th>Descuento (5%)</Th>
