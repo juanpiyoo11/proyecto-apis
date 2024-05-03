@@ -18,3 +18,6 @@ export const quitarItemCarrito = (idProducto) => {
     const carritoActualizado = carrito.filter(producto => producto.id !== idProducto);
     localStorage.setItem('carrito', JSON.stringify(carritoActualizado));
 }
+export const limpiarCarrito = () => {
+    localStorage.setItem('carrito', JSON.stringify([]));
+}
