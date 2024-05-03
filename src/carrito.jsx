@@ -29,20 +29,21 @@ function Carrito({ cerrarCarrito }) {
             {productos.length > 0 ? (
                 <div className='productos'>
                     {productos.map((producto, index) => (
-                        <div key={index} className='producto'>
-                            <div className="imagen">
-                            <img src={producto.image} alt={producto.name} />
-                            
-                            <button onClick = {() => handleBoton(index, producto.id)}> ✕ </button>
+                       <div key={index} className='producto'>
+                       <div className='botons'>
+                           <button onClick={() => handleBoton(index, producto.id)}>✕</button>
+                       </div>
+                       <div className='informacion'>
+                           <div className="imagen">
+                               <img className='zapa' src={producto.image} alt={producto.name} />
+                           </div>
+                           <div className="info">
+                               <div>{producto.name}</div>
+                               <div>${producto.price}</div>
+                           </div>
+                       </div>
+                   </div>
 
-                            </div>
-                            <br />
-                            <div className="info">
-
-                            <div>{producto.name}</div>
-                            <div>${producto.price}</div>
-                            </div>
-                        </div>
                     ))}
                 </div>
             ) : (
