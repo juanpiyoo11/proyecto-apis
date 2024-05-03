@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react"
-import {Alert, AlertDescription, AlertIcon, AlertTitle, useDisclosure} from '@chakra-ui/react'
+import {Alert, AlertDescription, AlertIcon, AlertTitle, Box, Slide, useDisclosure, useToast} from '@chakra-ui/react'
 
 import {Button, ButtonGroup} from '@chakra-ui/react'
 import CardCompo from "./cardCompo.jsx"
@@ -14,37 +14,28 @@ import {
     ModalCloseButton,
 } from '@chakra-ui/react'
 import {MdCancel, MdOutlinePayment} from "react-icons/md";
+import {obtenerItemsCarrito} from "../js/carritoService.js";
 
 
 export default function PaymentCancel() {
 
-    const {isOpen, onOpen, onClose} = useDisclosure()
-
-    useEffect(() => {
-        onOpen();
-    }, []);
+    const toast = useToast()
 
     return (
         <>
-            <Modal isOpen={isOpen} onClose={onClose}>
-                <Alert
-                    status='error'
-                    variant='subtle'
-                    flexDirection='column'
-                    alignItems='center'
-                    justifyContent='center'
-                    textAlign='center'
-                    height='200px'
-                >
-                    <AlertIcon boxSize='40px' mr={0}/>
-                    <AlertTitle mt={4} mb={1} fontSize='lg'>
-                        Payment Cancelled
-                    </AlertTitle>
-                    <AlertDescription maxWidth='sm'>
-                        Your payment has been cancelled. Please try again.
-                    </AlertDescription>
-                </Alert>
-            </Modal>
+            <Button flex='1' variant='ghost' colorScheme='red' leftIcon={<MdCancel />}
+                onClick={() =>
+                    toast({
+                        title: 'Payment Cancelled.',
+                        description: "Payment Cancelled. Please try again.",
+                        status: 'error',
+                        duration: 5000,
+                        isClosable: true,
+                    })
+                }
+            >
+                Payment Cancelled
+            </Button>
         </>
     )
 }

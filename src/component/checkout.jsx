@@ -44,6 +44,8 @@ export default function Checkout(products) {
 
                     <ModalFooter>
 
+                        <PaymentSuccesful/>
+                        <PaymentCancel/>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
