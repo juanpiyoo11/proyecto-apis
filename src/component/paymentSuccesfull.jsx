@@ -36,7 +36,10 @@ export default function PaymentSuccesful() {
                             isClosable: true,
                         })
                         limpiarCarrito();
-                        navegate('./home', { replace: true });
+                        
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 2000);
                     }}
             >
                 Payment Succesful

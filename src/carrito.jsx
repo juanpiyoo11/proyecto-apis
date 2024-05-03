@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './css/carrito.css';
-import {obtenerItemsCarrito} from "./js/carritoService.js";
+import {obtenerItemsCarrito, quitarItemCarrito} from "./js/carritoService.js";
 import Checkout from "./component/checkout.jsx";
 
 function Carrito({ cerrarCarrito }) {
@@ -10,6 +10,16 @@ function Carrito({ cerrarCarrito }) {
         const itemsCarrito = obtenerItemsCarrito();
         setProductos(itemsCarrito);
     }, []);
+
+    const eliminarProducto = (index) => {
+        const nuevosProductos = [...productos];
+        nuevosProductos.splice(index, 1);
+        setProductos(nuevosProductos);
+    };
+    const handleBoton = (index, id) => {
+        eliminarProducto(index);
+        quitarItemCarrito(id);
+    }
 
     return (
         <div className='submenu-carrito'>
@@ -22,6 +32,8 @@ function Carrito({ cerrarCarrito }) {
                         <div key={index} className='producto'>
                             <div className="imagen">
                             <img src={producto.image} alt={producto.name} />
+                            
+                            <button onClick = {() => handleBoton(index, producto.id)}> ✕ </button>
 
                             </div>
                             <br />
