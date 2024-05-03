@@ -60,7 +60,13 @@ function Navbar() {
     const [query, setQuery] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate(`/resultados/${query}`, {replace: true});
+        if(query === ""){
+            navigate(`/resultados/emptySearch`, { replace: true });
+        }
+        else{
+            navigate(`/resultados/${query}`, {replace: true});
+        }
+
     };
 
     useEffect(() => {
@@ -117,26 +123,25 @@ function Navbar() {
                 </div>
                 <div className="contenedor-2">
                     <div className="menu" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                        <a href="/src/prueba" className="nombre">Calzado</a>
+                        <a className="nombre" onClick={() => navigate('/resultados/emptySearch')}>Calzado</a>
                         <div className="nombre menu1" onMouseEnter={handleMouseEnter}
                              onMouseLeave={handleMouseLeave}>Marca
                         </div>
                         <ul className={`submenu uno ${menuVisible ? 'show' : ''}`} onMouseEnter={handleSubmenuEnter}
                             onMouseLeave={handleSubmenuLeave}>
                             <div className="submenu-column menu1">
-                                <li><a href="" className='decoracion-enlace menu1'>Puma</a></li>
-                                <li><a href="#" className='decoracion-enlace'>Adidas</a></li>
-                                <li><a href="#" className='decoracion-enlace'>Nike</a></li>
+                                <li><a className='decoracion-enlace menu1' onClick={() => navigate('/resultados/puma')}>Puma</a></li>
+                                <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/adidas')}>Adidas</a></li>
+                                <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/nike')}>Nike</a></li>
                             </div>
                             <div className="submenu-column1 menu1">
-                                <li><a href="#" className='decoracion-enlace'>Adidas</a></li>
-                                <li><a href="#" className='decoracion-enlace'>Crocs</a></li>
-                                <li><a href="#" className='decoracion-enlace'>Converse</a></li>
+                                <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/crocs')}>Crocs</a></li>
+                                <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/converse')}>Converse</a></li>
+                                <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/vans')}>Vans</a></li>
                             </div>
                             <div className="submenu-column2 menu1">
-                                <li><a href="#" className='decoracin-enlace'>Fila</a></li>
-                                <li><a href="#" className='decoracion-enlace'>Vans</a></li>
-                                <li><a href="#" className='decoracion-enlace'>Rebook</a></li>
+                                <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/rebook')}>Rebook</a></li>
+                                <li><a className='decoracin-enlace' onClick={() => navigate('/resultados/fila')}>Fila</a></li>
                             </div>
                         </ul>
 
@@ -146,23 +151,20 @@ function Navbar() {
                         <ul className={`submenu uno ${menuVisible ? 'show' : ''}`} onMouseEnter={handleSubmenuEnter}
                             onMouseLeave={handleSubmenuLeave}>
                             <div className="submenu-column menu1">
-                                <li><a href="" className='decoracion-enlace menu1'>Streetwear</a></li>
-                                <li><a href="#" className='decoracion-enlace'>Casual</a></li>
-                                <li><a href="#" className='decoracion-enlace'>Deportivas</a></li>
+                                <li><a className='decoracion-enlace menu1' onClick={() => navigate('/resultados/street')}>Streetwear</a></li>
+                                <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/casual')}>Casual</a></li>
+                                <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/skate')}>Skate</a></li>
                             </div>
                             <div className="submenu-column1 menu1">
-                                <li><a href="#" className='decoracion-enlace'>Skate</a></li>
-                                <li><a href="#" className='decoracion-enlace'>Retro</a></li>
-                                <li><a href="#" className='decoracion-enlace'>Running</a></li>
+                                <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/retro')}>Retro</a></li>
+                                <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/running')}>Running</a></li>
+                                <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/slip-on')}>Slip-on</a></li>
                             </div>
                             <div className="submenu-column2 menu1">
-                                <li><a href="#" className='decoracin-enlace'>High-top</a></li>
-                                <li><a href="#" className='decoracion-enlace'>Slip-on</a></li>
-                                <li><a href="#" className='decoracion-enlace'>Eco-friendly</a></li>
+                                <li><a className='decoracin-enlace' onClick={() => navigate('/resultados/high-top')}>High-top</a></li>
+                                <li><a className='decoracion-enlace' onClick={() => navigate('/resultados/eco-friendly')}>Eco-friendly</a></li>
                             </div>
                         </ul>
-                        <a href="/src/prueba" className="nombre">Hombre</a>
-                        <a href="/src/prueba" className="nombre">Mujer</a>
                     </div>
                 </div>
 
