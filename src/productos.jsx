@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./css/tarjeta_producto.css";
 import { getProducts } from "./js/productServices.js";
 import { useNavigate } from "react-router-dom";
+import Carrito from "./component/carrito";
 
 const Productos = () => {
   const [products, setProducts] = useState([]);
@@ -20,7 +21,7 @@ const Productos = () => {
           <img src={producto.image} alt={producto.name} className="imagen_producto" onClick = {() => navigate(`../product/${producto.id}`)}/>
           <h2 className="nombre_producto">{producto.name}</h2>
           <p className="precio_producto">${producto.price}</p>
-          <button className="btn_comprar" onClick={() => agregarProducto(producto)}>Agregar al carrito</button>
+          <Carrito product={producto} />
         </div>
       ))}
     </div>

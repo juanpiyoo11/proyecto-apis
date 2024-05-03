@@ -19,6 +19,7 @@ import {
 import {getProductById, getProducts} from "./js/productServices.js";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import Carrito from "./component/carrito";
 
 
 function PaginaProducto() {
@@ -75,7 +76,7 @@ function PaginaProducto() {
                             </NumberInputStepper>
                         </NumberInput>
 
-                        <Button colorScheme='gray' w='200px'>Agregar al Carrito</Button>
+                        <Carrito product={product} />
                     </Flex>
 
                 </Flex>

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './css/carrito.css';
+import {obtenerItemsCarrito} from "./js/carritoService.js";
+import Checkout from "./component/checkout.jsx";
 
 function Carrito({ cerrarCarrito }) {
     const [productos, setProductos] = useState([]);
 
-    // Función para agregar un producto al carrito
-    const agregarProducto = (producto) => {
-        setProductos([...productos, producto]);
-    };
+    useEffect(() => {
+        const itemsCarrito = obtenerItemsCarrito();
+        setProductos(itemsCarrito);
+    }, []);
 
     return (
         <div className='submenu-carrito'>
@@ -27,7 +29,7 @@ function Carrito({ cerrarCarrito }) {
             ) : (
                 <p>No hay productos en el carrito.</p>
             )}
-            <button className='checkout'>Checkout</button>
+            <Checkout products={productos}/>
         </div>
     );
 }
