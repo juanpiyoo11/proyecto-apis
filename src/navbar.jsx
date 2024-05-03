@@ -1,11 +1,11 @@
 import skoLogo from './imagenes/sko.png'
 import search from './imagenes/search.svg'
-import carrito from './imagenes/shopping-cart.svg'
+import carritoIcono from './imagenes/shopping-cart.svg'
 import user from './imagenes/user.svg'
 import './css/navbar.css'
-
+import './css/carrito.css'
 import {useNavigate, Routes, Route, Link} from 'react-router-dom'
-
+import Carrito from './carrito.jsx'
 import React, { useState } from 'react';
 function navbar(){
     const navigate = useNavigate();
@@ -41,6 +41,17 @@ function navbar(){
     const handleUserLeave = () => {
         setShowUserMenu(false);
     };
+
+    const [carritoVisible, setCarritoVisible] = useState(false);
+
+    const toggleCarrito = () => {
+        setCarritoVisible(!carritoVisible);
+    };
+
+    const cerrarCarrito = () => {
+        setCarritoVisible(false);
+    };
+
     const [query, setQuery] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -73,10 +84,14 @@ function navbar(){
                             </div>
                         )}
                     </div>
-
-                    <button className='carrito'><img src={carrito} alt="" /></button>
+                    
+                    <button className='carrito' onClick={toggleCarrito}>
+                            <img src={carritoIcono} alt="" />
+                    </button>
+                    {carritoVisible && <Carrito cerrarCarrito={cerrarCarrito} />}
+                    
                 </div>
-
+                
             </div>
             <div className="contenedor-2">
                     <div className="menu" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
