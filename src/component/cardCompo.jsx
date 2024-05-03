@@ -43,12 +43,8 @@ export default function CardCompo({ products }) {
   const total = productList.reduce((acc, product) => {
     return acc + product.price * product.quantity;
   }, 0);
-  let totalConDescuento = total;
-  let descuento = 0;
-  if (total > 100000) {
-    descuento = total * 0.05;
-    totalConDescuento = total - descuento;
-  }
+  const descuento = total * 0.05;
+  const totalConDescuento = total - descuento;
 
   return (
     <Card maxW="xl">
