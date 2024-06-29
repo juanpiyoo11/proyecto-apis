@@ -40,19 +40,6 @@
       "image": "https://www.moov.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dw0af168a8/products/PU_388258-01/PU_388258-01-1.JPG"
     },
     {
-      "id": "4",
-      "publisherId": "1",
-      "brand": "Vans",
-      "category": "Street",
-      "name": "Old school",
-      "price": "119999",
-      "size": "12",
-      "color": "Black",
-      "sex": "Unisex",
-      "stock": "3",
-      "image": "https://www.tripstore.com.ar/media/catalog/product/cache/4769e4d9f3516e60f2b4303f8e5014a8/0/D/0D3HY28_0_15.jpg"
-    },
-    {
       "id": "5",
       "publisherId": "1",
       "brand": "Nike",
