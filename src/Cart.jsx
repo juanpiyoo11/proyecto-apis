@@ -12,17 +12,6 @@ function Carrito({ cerrarCarrito }) {
     const itemsCarrito = obtenerItemsCarrito();
     setProductos(itemsCarrito);
 
-    const eliminarProducto = (index) => {
-      const nuevosProductos = [...productos];
-      nuevosProductos.splice(index, 1);
-      setProductos(nuevosProductos);
-    };
-
-    const handleBoton = (index, id) => {
-      eliminarProducto(index);
-      quitarItemCarrito(id);
-    };
-
     function handleClickFuera(event) {
       if (carritoRef.current && !carritoRef.current.contains(event.target)) {
         cerrarCarrito();
@@ -34,6 +23,17 @@ function Carrito({ cerrarCarrito }) {
       document.removeEventListener("mousedown", handleClickFuera);
     };
   }, [cerrarCarrito]);
+
+  const eliminarProducto = (index) => {
+    const nuevosProductos = [...productos];
+    nuevosProductos.splice(index, 1);
+    setProductos(nuevosProductos);
+  };
+
+  const handleBoton = (index, id) => {
+    eliminarProducto(index);
+    quitarItemCarrito(id);
+  };
 
   // Resto del componente...
 

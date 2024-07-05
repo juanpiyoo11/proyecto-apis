@@ -1,14 +1,14 @@
-import Carrusel from './carrusel.jsx'
-import Productos from "./productos.jsx";
-import { Outlet } from 'react-router-dom/dist/index.js';
+import Carrusel from "./Carrusel.jsx";
+import Productos from "./HomeProductList.jsx";
+import { Outlet } from "react-router-dom/dist/index.js";
 
 function Home() {
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <Carrusel />
-        <Productos />
-      </div>
-    );
-  }
+  return (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <Carrusel />
+      <Productos />
+    </div>
+  );
+}
 
 export default Home;

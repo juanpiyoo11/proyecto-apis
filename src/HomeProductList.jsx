@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./css/tarjeta_producto.css";
 import { getProducts } from "./js/productServices.js";
 import { useNavigate } from "react-router-dom";
-import Carrito from "./component/carrito";
+import Carrito from "./component/carrito.jsx";
 
 const Productos = () => {
   const [products, setProducts] = useState([]);

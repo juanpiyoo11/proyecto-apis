@@ -5,7 +5,7 @@ import user from "./imagenes/user.svg";
 import "./css/navbar.css";
 import "./css/carrito.css";
 import { useNavigate, Routes, Route, Link } from "react-router-dom";
-import Carrito from "./carrito.jsx";
+import Carrito from "./Cart.jsx";
 import React, { useEffect, useState } from "react";
 import { Badge } from "@chakra-ui/react";
 import { obtenerItemsCarrito } from "./js/carritoService.js";

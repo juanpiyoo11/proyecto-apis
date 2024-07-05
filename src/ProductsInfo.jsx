@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 import { useState, useEffect } from "react";
-import {useNavigate} from 'react-router-dom';
-import {getProducts, deleteProduct} from "./js/productServices.js"
-import './css/producto.css'
+import { useNavigate } from "react-router-dom";
+import { getProducts, deleteProduct } from "./js/productServices.js";
+import "./css/producto.css";
 
 const products = () => {
   const navigate = useNavigate();
@@ -20,22 +20,23 @@ const products = () => {
   const deleteProducts = (id) => {
     try {
       deleteProduct(id);
-      const updatedProducts = products.filter(product => product.id !== id);
+      const updatedProducts = products.filter((product) => product.id !== id);
       setProducts(updatedProducts);
       alert(`Producto ${id} eliminado con éxito`);
     } catch (error) {
-      console.error('Error al eliminar el producto:', error);
+      console.error("Error al eliminar el producto:", error);
     }
-}
+  };
 
   return (
-    <div >
-          <h1 className='title'>Mis Productos</h1>
-          <div className="productos">
-
-          {products.map((product) => (
-          <ul className='producto' key={product.id}>
-            <li><img src={product.image} alt="Imagen del producto"style={{ maxWidth: '200px', maxHeight: '200px' }}/></li>
+    <div>
+      <h1 className="title">Mis Productos</h1>
+      <div className="productos">
+        {products.map((product) => (
+          <ul className="producto" key={product.id}>
+            <li>
+              <img src={product.image} alt="Imagen del producto" style={{ maxWidth: "200px", maxHeight: "200px" }} />
+            </li>
             <li>Id: {product.id}</li>
             <li>Publicador: {product.publisherId}</li>
             <li>Marca: {product.brand}</li>
@@ -46,15 +47,15 @@ const products = () => {
             <li>Color: {product.color}</li>
             <li>Sexo: {product.sex}</li>
             <li>Stock: {product.stock}</li>
-            <li className='buttons'>
-            <button onClick={() => deleteProducts(product.id)}>Eliminar</button>
-            <button onClick={() => navigate(`../modifyProducts/${product.id}`)}>Modificar</button>
-          </li>
-        </ul>
-      ))}
-          </div>
+            <li className="buttons">
+              <button onClick={() => deleteProducts(product.id)}>Eliminar</button>
+              <button onClick={() => navigate(`../modifyProducts/${product.id}`)}>Modificar</button>
+            </li>
+          </ul>
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default products;
