@@ -37,8 +37,6 @@ const products = () => {
             <li>
               <img src={product.image} alt="Imagen del producto" style={{ maxWidth: "200px", maxHeight: "200px" }} />
             </li>
-            <li>Id: {product.id}</li>
-            <li>Publicador: {product.publisherId}</li>
             <li>Marca: {product.brand}</li>
             <li>Nombre: {product.name}</li>
             <li>Categoria: {product.category}</li>
