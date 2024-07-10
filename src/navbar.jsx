@@ -95,11 +95,11 @@ function Navbar() {
               <img src={user} alt="" />
               {showUserMenu && (
                 <div id="userDropdown" className="dropdown-content" onMouseEnter={handleUserEnter} onMouseLeave={handleUserLeave}>
-                  <a href="#" className="decoracion-enlace nombre2">
+                  <a href="#" className="decoracion-enlace nombre2" onClick={() => navigate("/login")}>
                     {" "}
                     Mi Cuenta
                   </a>
-                  <a href="#" className="decoracion-enlace nombre2">
+                  <a href="#" className="decoracion-enlace nombre2" >
                     Mis Pedidos
                   </a>
                   <a href="#" className="decoracion-enlace nombre2" onClick={() => navigate("/products")}>
