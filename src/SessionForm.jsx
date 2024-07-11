@@ -18,7 +18,7 @@ const SessionForm = () => {
             <h3>Iniciar sesión</h3>
             <div className="mail">
               <input type="email" name="" />
-              <label>Mail or Username</label>
+              <label>Username</label>
             </div>
             <div className="passwd">
               <input type="password" name="" />
@@ -29,7 +29,7 @@ const SessionForm = () => {
             </div>
             <br />
             <div className="submit">
-              <button className="dark" onClick={() => navigate("/RegisterForm")}>Register</button>
+              <button className="dark" onClick={() => navigate("/register")}>Register</button>
             </div>
           </form>
           
