@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import './css/App.css'
-import Navbar from './Navbar'
+import Navbar from './navbar'
 import Pie from './Footer.jsx'
 import PaginaProducto from './ProductPage.jsx'
 
@@ -9,8 +9,8 @@ import AddProduct from './AddProduct.jsx'
 import ModifyProduct from './ModifyProduct.jsx'
 import {Routes, Route, redirect} from 'react-router-dom'
 import Home from './Home.jsx'
-import SearchBar from './SearchBar.jsx'
-import Carrusel from './Carrusel.jsx'
+import SearchBar from './searchBar.jsx'
+import Carrusel from './carrusel.jsx'
 import SessionForm from "./SessionForm.jsx"
 import RegisterForm from "./RegisterForm.jsx"
 import * as React from 'react'

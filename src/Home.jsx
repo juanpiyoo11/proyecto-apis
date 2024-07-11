@@ -1,4 +1,4 @@
-import Carrusel from "./Carrusel.jsx";
+import Carrusel from "./carrusel.jsx";
 import Productos from "./HomeProductList.jsx";
 import { Outlet } from "react-router-dom/dist/index.js";
 
