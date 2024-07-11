@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./css/App.css";
-import Navbar from "./navbar.jsx";
+import Navbar from "./Navbar.jsx";
 import Pie from "./Footer.jsx";
 import PaginaProducto from "./ProductDetail.jsx";
 import ProductPage from "./ProductPage.jsx";
@@ -8,7 +8,7 @@ import AddProduct from "./AddProduct.jsx";
 import ModifyProduct from "./ModifyProduct.jsx";
 import { Routes, Route, redirect } from "react-router-dom";
 import Home from "./Home.jsx";
-import SearchBar from "./searchBar.jsx";
+import SearchBar from "./SearchBar.jsx";
 import * as React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 
