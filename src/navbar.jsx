@@ -168,8 +168,8 @@ function Navbar() {
               </div>
               <div className="submenu-column2 menu1">
                 <li>
-                  <a className="decoracion-enlace" onClick={() => navigate("/resultados/rebook")}>
-                    Rebook
+                  <a className="decoracion-enlace" onClick={() => navigate("/resultados/reebok")}>
+                    Reebok
                   </a>
                 </li>
                 <li>

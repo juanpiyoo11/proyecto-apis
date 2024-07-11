@@ -8,7 +8,7 @@ import AddProduct from "./AddProduct.jsx";
 import ModifyProduct from "./ModifyProduct.jsx";
 import { Routes, Route, redirect } from "react-router-dom";
 import Home from "./Home.jsx";
-import SearchBar from "./SearchBar.jsx";
+import SearchBar from "./searchBar.jsx"
 import * as React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 

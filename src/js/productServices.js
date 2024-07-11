@@ -10,14 +10,14 @@ export const deleteProduct = (id) => {
 }
 
 export const getProducts = () => {
-    return fetch("http://localhost:3000/products")
+    return fetch("https://backend-api-tpo-production.up.railway.app/products")
         .then((response) => response.json())
         .catch(error => console.log('Error al obtener productos', error))
         .finally(() => console.log('promise is finished'));
 }
 
 export const getProductById = (id) => {
-    return fetch(`http://localhost:3000/products/${id}`)
+    return fetch(`https://backend-api-tpo-production.up.railway.app/products/${id}`)
         .then((response) => response.json())
         .catch(error => console.log('Error al obtener producto', error))
         .finally(() => console.log('promise is finished'));
@@ -25,8 +25,13 @@ export const getProductById = (id) => {
 
 export const getProductsByNameBrand = async (query) => {
     try {
-      const response = await fetch('http://localhost:3000/products');
-      const data = await response.json();
+      const response = await fetch('https://backend-api-tpo-production.up.railway.app/products');
+      const responseData = await response.json();
+      
+      // Extraer el array de productos de la respuesta
+      const data = responseData.content;
+  
+      // Filtrar los productos según el query
       const filteredProducts = data.filter(product =>
         product.name.toLowerCase().includes(query.toLowerCase()) ||
         product.brand.toLowerCase().includes(query.toLowerCase()) ||
@@ -38,6 +43,13 @@ export const getProductsByNameBrand = async (query) => {
       return [];
     }
   };
+
+  export const getProductsFiltered= async (brand, category, name, minPrice, maxPrice) => {
+    return fetch('backend-api-tpo-production.up.railway.app/products/filtered')
+    .then((response) => response.json())
+    .catch(error => console.log('Error al obtener productos filtrados', error))
+    .finally(() => console.log('promise is finished'));
+  };
 
 export const createProduct = (id, publisherId, brand, category, name, price, size, color, sex, stock, image) => {
 
