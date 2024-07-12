@@ -130,4 +130,3 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
-a
