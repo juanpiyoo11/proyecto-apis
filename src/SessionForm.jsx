@@ -53,10 +53,10 @@ const SessionForm = () => {
               <button className="dark" onClick={handleLoginClick}>Login</button>
             </div>
             <br />
-            <div className="submit">
+            <div className="submit submit2">
               <button className="dark" onClick={() => navigate("/register")}>Register</button>
             </div>
-            {errorMessage && <p>{errorMessage}</p>}
+            <div>{errorMessage && <p>{errorMessage}</p>}</div>
           </form>
         </div>
       </div>
