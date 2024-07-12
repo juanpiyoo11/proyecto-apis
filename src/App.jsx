@@ -10,7 +10,6 @@ import ModifyProduct from './ModifyProduct.jsx'
 import {Routes, Route, redirect} from 'react-router-dom'
 import Home from './Home.jsx'
 import SearchBar from './searchBar.jsx'
-import Carrusel from './carrusel.jsx'
 import SessionForm from "./SessionForm.jsx"
 import RegisterForm from "./RegisterForm.jsx"
 import * as React from 'react'
@@ -45,7 +44,7 @@ function App() {
                             <Route path="/resultados/:query" element={<SearchBar/>}/>
                             <Route path="/modifyproducts/:id" element={<ModifyProduct/>}/>
                             <Route path="/login" element={<SessionForm/>}/>
-                            <Route path="/RegisterForm" element={<RegisterForm/>}/>
+                            <Route path="/register" element={<RegisterForm/>}/>
                         </Routes>
                     </div>
                     <div className="footer">
