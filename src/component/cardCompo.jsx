@@ -17,11 +17,21 @@ import {
   Th,
   Td,
   Input,
+  RadioGroup,
+  Radio,
+  Stack,
 } from "@chakra-ui/react";
 import { obtenerItemsCarrito } from "../js/carritoService.js";
 
 export default function CardCompo({ products, cuponDescuento, setCuponDescuento }) {
   const [productos, setProductos] = useState([]);
+  const [medioPago, setMedioPago] = useState("");
+  const [tarjeta, setTarjeta] = useState({
+    numero: "",
+    nombre: "",
+    fecha: "",
+    cvv: "",
+  });
 
   useEffect(() => {
     const itemsCarrito = obtenerItemsCarrito();
@@ -48,7 +58,6 @@ export default function CardCompo({ products, cuponDescuento, setCuponDescuento 
     return acc + product.price * product.quantity;
   }, 0);
 
-  // Calcular descuento con el cupón introducido
   const descuentoCupon = () => {
     const cupon = cuponDescuento.toLowerCase(); // Convertir a minúsculas para comparación
     if (cupon === "cupon5") {
@@ -61,9 +70,20 @@ export default function CardCompo({ products, cuponDescuento, setCuponDescuento 
   const descuento = descuentoCupon();
   const totalConDescuento = total - descuento;
 
-  // Manejar cambios en el input del cupón
   const handleChangeCupon = (event) => {
     setCuponDescuento(event.target.value);
+  };
+
+  const handleMedioPagoChange = (value) => {
+    setMedioPago(value);
+  };
+
+  const handleTarjetaChange = (event) => {
+    const { name, value } = event.target;
+    setTarjeta((prevTarjeta) => ({
+      ...prevTarjeta,
+      [name]: value,
+    }));
   };
 
   return (
@@ -114,6 +134,49 @@ export default function CardCompo({ products, cuponDescuento, setCuponDescuento 
             </Tr>
           </Tfoot>
         </Table>
+        <Box mt="4">
+          <Text fontSize="lg" fontWeight="bold">Selecciona el medio de pago</Text>
+          <RadioGroup onChange={handleMedioPagoChange} value={medioPago}>
+            <Stack direction="row">
+              <Radio value="debito">Tarjeta de Débito</Radio>
+              <Radio value="credito">Tarjeta de Crédito</Radio>
+              <Radio value="efectivo">Efectivo</Radio>
+            </Stack>
+          </RadioGroup>
+          {(medioPago === "debito" || medioPago === "credito") && (
+            <Box mt="4">
+              <Text fontSize="lg" fontWeight="bold">Datos de la tarjeta</Text>
+              <Input
+                placeholder="Número de tarjeta"
+                name="numero"
+                value={tarjeta.numero}
+                onChange={handleTarjetaChange}
+                mt="2"
+              />
+              <Input
+                placeholder="Nombre en la tarjeta"
+                name="nombre"
+                value={tarjeta.nombre}
+                onChange={handleTarjetaChange}
+                mt="2"
+              />
+              <Input
+                placeholder="Fecha de expiración"
+                name="fecha"
+                value={tarjeta.fecha}
+                onChange={handleTarjetaChange}
+                mt="2"
+              />
+              <Input
+                placeholder="CVV"
+                name="cvv"
+                value={tarjeta.cvv}
+                onChange={handleTarjetaChange}
+                mt="2"
+              />
+            </Box>
+          )}
+        </Box>
       </CardBody>
       <CardFooter
         justify="space-between"
