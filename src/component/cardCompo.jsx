@@ -20,9 +20,8 @@ import {
 } from "@chakra-ui/react";
 import { obtenerItemsCarrito } from "../js/carritoService.js";
 
-export default function CardCompo({ products }) {
+export default function CardCompo({ products, cuponDescuento, setCuponDescuento }) {
   const [productos, setProductos] = useState([]);
-  const [cuponDescuento, setCuponDescuento] = useState("");
 
   useEffect(() => {
     const itemsCarrito = obtenerItemsCarrito();

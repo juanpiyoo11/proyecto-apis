@@ -30,7 +30,7 @@ const OrdersComponent = () => {
         orders.map((order) => (
           <div key={order.id} style={{ border: "1px solid #ccc", padding: "10px", margin: "10px 0" }}>
             <p>Fecha: {new Date(order.date).toLocaleString()}</p>
-            <p>Valor Total: ${order.totalValue / 100}</p>
+            <p>Valor Total: ${order.totalValue}</p>
             <h3>Detalles del Producto:</h3>
             {order.details.map((detail) => (
               <div key={detail.id} style={{ marginTop: "10px", display: "flex", alignItems: "center" }}>

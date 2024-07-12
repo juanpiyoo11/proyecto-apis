@@ -4,13 +4,13 @@ import { Button } from "@chakra-ui/react";
 import CardCompo from "./cardCompo.jsx";
 
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react";
-import PaymentCancel from "./paymentCancel.jsx";
 import PaymentSuccesful from "./paymentSuccesfull.jsx";
 import { obtenerItemsCarrito } from "../js/carritoService.js";
 
 export default function Checkout() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [productos, setProductos] = useState([]);
+  const [cuponDescuento, setCuponDescuento] = useState("");
 
   useEffect(() => {
     const itemsCarrito = obtenerItemsCarrito();
@@ -31,11 +31,10 @@ export default function Checkout() {
           <ModalHeader>Checkout</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <CardCompo products={productos} />
+            <CardCompo products={productos} cuponDescuento={cuponDescuento} setCuponDescuento={setCuponDescuento} />
           </ModalBody>
           <ModalFooter>
-            <PaymentSuccesful />
-            {/* <PaymentCancel /> */}
+            <PaymentSuccesful cuponDescuento={cuponDescuento} />
           </ModalFooter>
         </ModalContent>
       </Modal>

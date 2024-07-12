@@ -1,11 +1,10 @@
-import { useToast, Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react';
-import { Button } from "@chakra-ui/react";
+import { useToast, Button } from "@chakra-ui/react";
 import { MdOutlinePayment } from "react-icons/md";
 import { limpiarCarrito, obtenerItemsCarrito } from "../js/carritoService.js";
 import { purchaseProducts } from "../js/productServices.js";
 import { useSelector } from 'react-redux';
 
-export default function PaymentSuccesful({ cuponDescuento, descuento }) {
+export default function PaymentSuccesful({ cuponDescuento }) {
   const token = useSelector(state => state.auth.token);
   const toast = useToast();
   const carrito = obtenerItemsCarrito();
@@ -23,7 +22,6 @@ export default function PaymentSuccesful({ cuponDescuento, descuento }) {
       return;
     }
 
-
     const productos = carrito.map(item => ({
       productId: item.id,
     }));
@@ -32,8 +30,8 @@ export default function PaymentSuccesful({ cuponDescuento, descuento }) {
     purchaseProducts(productos, cuponDescuento, token);
 
     toast({
-      title: "Payment Succesful.",
-      description: "Payment Succesful. Thank you for your purchase.",
+      title: "Pago exitoso",
+      description: "¡Gracias por tu compra!",
       status: "success",
       duration: 5000,
       isClosable: true,
@@ -41,22 +39,18 @@ export default function PaymentSuccesful({ cuponDescuento, descuento }) {
 
     limpiarCarrito();
 
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 2000);
+    // Redirigir o hacer alguna otra acción después del pago
   };
 
   return (
-    <>
-      <Button
-        flex="1"
-        variant="ghost"
-        colorScheme="green"
-        leftIcon={<MdOutlinePayment />}
-        onClick={handlePayment}
-      >
-        Comprar
-      </Button>
-    </>
+    <Button
+      flex="1"
+      variant="ghost"
+      colorScheme="green"
+      leftIcon={<MdOutlinePayment />}
+      onClick={handlePayment}
+    >
+      Comprar
+    </Button>
   );
 }
