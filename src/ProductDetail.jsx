@@ -4,8 +4,6 @@ import {
   Image,
   Box,
   Text,
-  Grid,
-  Button,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
@@ -24,16 +22,28 @@ function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [quantity, setQuantity] = useState(1); // Estado para almacenar la cantidad seleccionada
   const defaultImage = 'https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk='; // URL de la imagen por defecto
 
   useEffect(() => {
-    getProductById(id).then((data) => {
-      setProduct(data);
-      setIsLoaded(true);
-    }).catch(error => {
-      console.error('Error fetching product:', error);
-    });
+    getProductById(id)
+      .then((data) => {
+        setProduct(data);
+        setIsLoaded(true);
+      })
+      .catch(error => {
+        console.error('Error fetching product:', error);
+      });
   }, [id]);
+
+  const handleQuantityChange = (valueString, valueNumber) => {
+    if (valueNumber > product.stock) {
+      // Ajustar la cantidad si supera el stock disponible
+      setQuantity(product.stock); // Ajusta la cantidad al máximo disponible
+    } else {
+      setQuantity(valueNumber); // Actualiza la cantidad seleccionada
+    }
+  };
 
   return isLoaded ? (
     <Card>
@@ -61,53 +71,25 @@ function ProductDetail() {
           </Heading>
 
           <Text className="Talles" fontSize="2xl">
-            Talles
+            Categoria: {product && product.category}
           </Text>
-          <Grid templateColumns="repeat(5, 1fr)" gap={6} pb="5">
-            <Button colorScheme="gray" variant="outline">
-              7 US
-            </Button>
-            <Button colorScheme="gray" variant="outline">
-              7.5 US
-            </Button>
-            <Button colorScheme="gray" variant="outline">
-              8 US
-            </Button>
-            <Button colorScheme="gray" variant="outline">
-              8.5 US
-            </Button>
-            <Button colorScheme="gray" variant="outline">
-              9 US
-            </Button>
-            <Button colorScheme="gray" variant="outline">
-              9.5 US
-            </Button>
-            <Button colorScheme="gray" variant="outline">
-              10 US
-            </Button>
-            <Button colorScheme="gray" variant="outline">
-              10.5 US
-            </Button>
-            <Button colorScheme="gray" variant="outline">
-              11 US
-            </Button>
-            <Button colorScheme="gray" variant="outline">
-              12 US
-            </Button>
-          </Grid>
 
-          <Text className="Cantidad" fontSize="2xl">
-            Cantidad
+          <Text className="Talles" fontSize="2xl">
+            Color: {product && product.color}
           </Text>
-          <NumberInput className="seleccionaCantidad" defaultValue={0} min={0} max={10} mb="5" w="xs">
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
 
-          {<Carrito product={product} />}
+          <Text className="Talles" fontSize="2xl">
+            Talle: {product && product.size}
+          </Text>
+
+          <Text className="Talles" fontSize="2xl">
+            Sexo: {product && product.sex}
+          </Text>
+
+
+
+          {/* Pasa product y quantity como props al componente Carrito */}
+          <Carrito product={product}/>
         </Flex>
       </Flex>
     </Card>

@@ -2,12 +2,14 @@ import React, { useEffect, useState, useRef } from "react";
 import "./css/carrito.css";
 import { obtenerItemsCarrito, quitarItemCarrito } from "./js/carritoService.js";
 import Checkout from "./component/checkout.jsx";
+import { useNavigate } from "react-router-dom";
 
 const defaultImage = 'https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk=';
 
 function Carrito({ cerrarCarrito }) {
   const [productos, setProductos] = useState([]);
   const carritoRef = useRef();
+  const navigate = useNavigate(); // Ensure useNavigate is inside the functional component
 
   useEffect(() => {
     const itemsCarrito = obtenerItemsCarrito();
@@ -51,15 +53,15 @@ function Carrito({ cerrarCarrito }) {
                 <button onClick={() => handleBoton(index, producto.id)}>✕</button>
               </div>
               <div className="informacion">
-                <div className="imagen">
+                <div className="imagen" onClick={() => navigate(`../product/${producto.id}`)} onMouseOver={(e) => e.currentTarget.style.cursor = "pointer"}> 
                   <img 
                     className="zapa" 
                     src={producto.image ? producto.image : defaultImage} 
                     alt={producto.name ? producto.name : 'Producto sin nombre'} 
-                  />
+                    />
                 </div>
                 <div className="info">
-                  <div>{producto.name || 'Producto sin nombre'}</div>
+                  <div >{producto.name || 'Producto sin nombre'}</div>
                   <div>${producto.price || '0.00'}</div>
                 </div>
               </div>

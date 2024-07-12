@@ -1,26 +1,29 @@
 import { useEffect, useState } from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import CardCompo from "./cardCompo.jsx";
 
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react";
-import { MdCancel, MdOutlinePayment } from "react-icons/md";
 import PaymentCancel from "./paymentCancel.jsx";
 import PaymentSuccesful from "./paymentSuccesfull.jsx";
-import { getProducts } from "../js/productServices.js";
 import { obtenerItemsCarrito } from "../js/carritoService.js";
 
-export default function Checkout(products) {
+export default function Checkout() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    products = obtenerItemsCarrito();
-    //console.log(products.length !== 0 )
+    const itemsCarrito = obtenerItemsCarrito();
+    setProductos(itemsCarrito);
   }, [onOpen]);
+
+  const handleCheckoutClick = () => {
+    onOpen();
+  };
 
   return (
     <>
-      <Button onClick={onOpen}> Checkout </Button>
+      <Button onClick={handleCheckoutClick}>Checkout</Button>
 
       <Modal isOpen={isOpen} onClose={onClose} size={"xl"}>
         <ModalOverlay />
@@ -28,7 +31,7 @@ export default function Checkout(products) {
           <ModalHeader>Checkout</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <CardCompo products={products}></CardCompo>
+            <CardCompo products={productos} />
           </ModalBody>
           <ModalFooter>
             <PaymentSuccesful />

@@ -1,13 +1,22 @@
-export const deleteProduct = (id) => {
+export const deleteProduct = (id, token) => {
     var requestOptions = {
-        method: 'DELETE',
+        method: 'PUT',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'accept': 'application/json', // Puedes ajustar esto según el tipo de respuesta esperada
+            'Content-Type': 'application/json' // Si es necesario especificar el tipo de contenido
+        }
     };
 
-    return fetch("http://localhost:3000/products/" + id, requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('Error al obtener producto', error));
-}
+    return fetch(`https://backend-api-tpo-production.up.railway.app/products/${id}/inactivate`, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al eliminar el producto');
+            }
+        })
+        .then(result => console.log('Producto eliminado correctamente:', result))
+        .catch(error => console.error('Error al eliminar producto:', error));
+}   
 
 export const getProducts = () => {
     return fetch("https://backend-api-tpo-production.up.railway.app/products")
@@ -208,3 +217,39 @@ export const uploadImg = async (imageFile) => {
     }
 };
 
+export const purchaseProducts = async (products, discountCode = null, token) => {
+    const url = 'https://backend-api-tpo-production.up.railway.app/payments/product';
+  
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      'accept': '*/*'
+    };
+  
+    const requestBody = {
+      products: products.map(product => ({
+        productId: product.productId,
+        quantity: product.quantity
+      })),
+      discountCode: discountCode
+    };
+  
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(requestBody)
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const responseData = await response.json();
+      return responseData; // Puedes ajustar esto según la respuesta esperada
+    } catch (error) {
+      console.error('Error al realizar la solicitud:', error);
+      throw error;
+    }
+  };
+  

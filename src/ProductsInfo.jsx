@@ -19,7 +19,7 @@ const Products = () => {
 
   const deleteProductHandler = (id) => {
     try {
-      deleteProduct(id);
+      deleteProduct(id, token);
       const updatedProducts = products.filter((product) => product.id !== id);
       setProducts(updatedProducts);
       alert(`Producto ${id} eliminado con éxito`);
