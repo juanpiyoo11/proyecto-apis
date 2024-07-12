@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./css/carrito.css";
 import { obtenerItemsCarrito, quitarItemCarrito } from "./js/carritoService.js";
 import Checkout from "./component/checkout.jsx";
-import { useRef } from "react";
+
+const defaultImage = 'https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk=';
 
 function Carrito({ cerrarCarrito }) {
   const [productos, setProductos] = useState([]);
@@ -35,8 +36,6 @@ function Carrito({ cerrarCarrito }) {
     quitarItemCarrito(id);
   };
 
-  // Resto del componente...
-
   return (
     <div ref={carritoRef} className="submenu-carrito">
       <div className="cerrar" onClick={cerrarCarrito}>
@@ -53,11 +52,15 @@ function Carrito({ cerrarCarrito }) {
               </div>
               <div className="informacion">
                 <div className="imagen">
-                  <img className="zapa" src={producto.image} alt={producto.name} />
+                  <img 
+                    className="zapa" 
+                    src={producto.image && producto.image[0] ? producto.image[0].url : defaultImage} 
+                    alt={producto.name ? producto.name : 'Producto sin nombre'} 
+                  />
                 </div>
                 <div className="info">
-                  <div>{producto.name}</div>
-                  <div>${producto.price}</div>
+                  <div>{producto.name || 'Producto sin nombre'}</div>
+                  <div>${producto.price || '0.00'}</div>
                 </div>
               </div>
             </div>

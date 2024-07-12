@@ -1,21 +1,17 @@
-import {useState} from 'react'
-import './css/App.css'
-import Navbar from './navbar'
-import Pie from './Footer.jsx'
-import PaginaProducto from './ProductPage.jsx'
 
-import ProductPage from './ProductPage.jsx'
-import AddProduct from './AddProduct.jsx'
-import ModifyProduct from './ModifyProduct.jsx'
-import {Routes, Route, redirect} from 'react-router-dom'
-import Home from './Home.jsx'
-import SearchBar from './searchBar.jsx'
-import SessionForm from "./SessionForm.jsx"
-import RegisterForm from "./RegisterForm.jsx"
-import * as React from 'react'
-
-import {ChakraProvider} from '@chakra-ui/react'
-
+import { useState } from "react";
+import "./css/App.css";
+import Navbar from "./navbar.jsx";
+import Pie from "./Footer.jsx";
+import PaginaProducto from "./ProductDetail.jsx";
+import ProductPage from "./ProductPage.jsx";
+import AddProduct from "./AddProduct.jsx";
+import ModifyProduct from "./ModifyProduct.jsx";
+import { Routes, Route, redirect } from "react-router-dom";
+import Home from "./Home.jsx";
+import SearchBar from "./searchBar.jsx"
+import * as React from "react";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
     const [count, setCount] = useState(0);
