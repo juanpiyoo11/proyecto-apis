@@ -14,6 +14,7 @@ import * as React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import SessionForm from "./SessionForm.jsx";
 import RegisterForm from "./RegisterForm.jsx";
+import Orders from "./Orders.jsx"
 
 function App() {
     const [count, setCount] = useState(0);
@@ -43,6 +44,7 @@ function App() {
                             <Route path="/modifyproducts/:id" element={<ModifyProduct/>}/>
                             <Route path="/login" element={<SessionForm/>}/>
                             <Route path="/register" element={<RegisterForm/>}/>
+                            <Route path="/orders" element={<Orders/>}/>
                         </Routes>
                     </div>
                     

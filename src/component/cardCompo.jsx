@@ -1,23 +1,28 @@
-import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
-import { Flex, Spacer } from "@chakra-ui/react";
-import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
-import { Text } from "@chakra-ui/react";
-import { IconButton } from "@chakra-ui/react";
-import { Heading } from "@chakra-ui/react";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import { BiLike, BiChat, BiShare } from "react-icons/bi";
-import { Image } from "@chakra-ui/react";
-import { MdOutlinePayment } from "react-icons/md";
-import { MdCancel } from "react-icons/md";
-
-import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Flex,
+  Box,
+  Text,
+  Heading,
+  Table,
+  TableCaption,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  Input,
+} from "@chakra-ui/react";
 import { obtenerItemsCarrito } from "../js/carritoService.js";
 
 export default function CardCompo({ products }) {
   const [productos, setProductos] = useState([]);
+  const [cuponDescuento, setCuponDescuento] = useState("");
 
   useEffect(() => {
     const itemsCarrito = obtenerItemsCarrito();
@@ -43,8 +48,24 @@ export default function CardCompo({ products }) {
   const total = productList.reduce((acc, product) => {
     return acc + product.price * product.quantity;
   }, 0);
-  const descuento = total * 0.05;
+
+  // Calcular descuento con el cupón introducido
+  const descuentoCupon = () => {
+    const cupon = cuponDescuento.toLowerCase(); // Convertir a minúsculas para comparación
+    if (cupon === "cupon5") {
+      return total * 0.05;
+    } else {
+      return 0; // No se aplica descuento si el cupón no es válido
+    }
+  };
+
+  const descuento = descuentoCupon();
   const totalConDescuento = total - descuento;
+
+  // Manejar cambios en el input del cupón
+  const handleChangeCupon = (event) => {
+    setCuponDescuento(event.target.value);
+  };
 
   return (
     <Card maxW="xl">
@@ -59,50 +80,42 @@ export default function CardCompo({ products }) {
         </Flex>
       </CardHeader>
       <CardBody>
-        <TableContainer>
-          <Table variant="striped" colorScheme="teal">
-            <TableCaption></TableCaption>
-            <Thead>
-              <Tr>
-                <Th>Prooducto</Th>
-                <Th>Cantidad</Th>
-                <Th isNumeric>Precio</Th>
+        <Table variant="striped" colorScheme="teal">
+          <TableCaption></TableCaption>
+          <Thead>
+            <Tr>
+              <Th>Producto</Th>
+              <Th>Cantidad</Th>
+              <Th isNumeric>Precio</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {productList.map((product, index) => (
+              <Tr key={index}>
+                <Td>{product.name}</Td>
+                <Td>{product.quantity}</Td>
+                <Td isNumeric>{product.price}</Td>
               </Tr>
-            </Thead>
-            <Tbody>
-              {productList.map((product, index) => (
-                <Tr key={index}>
-                  <Td>{product.name}</Td>
-                  <Td>{product.quantity}</Td>
-                  <Td isNumeric>{product.price}</Td>
-                </Tr>
-              ))}
-            </Tbody>
-            <Tfoot>
-              <Tr>
-                <Th>Total</Th>
-                <Th></Th>
-                <Th isNumeric>{total}</Th>
-              </Tr>
-              {total > 150000 && (
-                <>
-                  <Tr>
-                    <Th>Descuento (5%)</Th>
-                    <Th></Th>
-                    <Th isNumeric>-{descuento.toFixed(0)}</Th>
-                  </Tr>
-                  <Tr>
-                    <Th>Total con descuento</Th>
-                    <Th></Th>
-                    <Th isNumeric>{totalConDescuento.toFixed(0)}</Th>
-                  </Tr>
-                </>
-              )}
-            </Tfoot>
-          </Table>
-        </TableContainer>
+            ))}
+          </Tbody>
+          <Tfoot>
+            <Tr>
+              <Th>Total</Th>
+              <Th></Th>
+              <Th isNumeric>{total}</Th>
+            </Tr>
+            <Tr>
+              <Th>
+                <Input
+                  placeholder="Cupón de descuento"
+                  value={cuponDescuento}
+                  onChange={handleChangeCupon}
+                />
+              </Th>
+            </Tr>
+          </Tfoot>
+        </Table>
       </CardBody>
-
       <CardFooter
         justify="space-between"
         flexWrap="wrap"

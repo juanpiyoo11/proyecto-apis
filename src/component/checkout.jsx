@@ -35,7 +35,7 @@ export default function Checkout() {
           </ModalBody>
           <ModalFooter>
             <PaymentSuccesful />
-            <PaymentCancel />
+            {/* <PaymentCancel /> */}
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -3,10 +3,12 @@ import "./css/carrito.css";
 import { obtenerItemsCarrito, quitarItemCarrito } from "./js/carritoService.js";
 import Checkout from "./component/checkout.jsx";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const defaultImage = 'https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk=';
 
 function Carrito({ cerrarCarrito }) {
+  const token = useSelector(state => state.auth.token);
   const [productos, setProductos] = useState([]);
   const carritoRef = useRef();
   const navigate = useNavigate(); // Ensure useNavigate is inside the functional component
@@ -17,7 +19,6 @@ function Carrito({ cerrarCarrito }) {
 
     function handleClickFuera(event) {
       if (carritoRef.current && !carritoRef.current.contains(event.target)) {
-        cerrarCarrito();
       }
     }
 
@@ -36,6 +37,10 @@ function Carrito({ cerrarCarrito }) {
   const handleBoton = (index, id) => {
     eliminarProducto(index);
     quitarItemCarrito(id);
+  };
+
+  const handleLogin = () => {
+    navigate('/login'); // Redirigir al login
   };
 
   return (
@@ -71,7 +76,13 @@ function Carrito({ cerrarCarrito }) {
       ) : (
         <p>No hay productos en el carrito.</p>
       )}
-      <Checkout products={productos} />
+      {/* Mostrar Checkout y manejar la redirección según el estado del token */}
+      <div className="checkout-button">
+        {token && <Checkout products={productos}/>}
+      </div>
+      {!token && (
+        <button onClick={handleLogin}>Iniciar sesión</button>
+      )}
     </div>
   );
 }

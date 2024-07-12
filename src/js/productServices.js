@@ -1,3 +1,27 @@
+export const getOrders = (token) => {
+    var requestOptions = {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'accept': 'application/json', // Ajusta esto según el tipo de respuesta esperada
+        'Content-Type': 'application/json' // Si es necesario especificar el tipo de contenido
+      }
+    };
+  
+    return fetch(`https://backend-api-tpo-production.up.railway.app/transactions/user/purchases/`, requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error al traer los pedidos');
+        }
+        return response.json(); // Devuelve los datos decodificados en JSON
+      })
+      .catch(error => {
+        console.error('Error al traer los pedidos:', error);
+        throw error; // Propaga el error para manejarlo en el componente que llama a esta función
+      });
+  };
+  
+
 export const deleteProduct = (id, token) => {
     var requestOptions = {
         method: 'PUT',
@@ -229,7 +253,7 @@ export const purchaseProducts = async (products, discountCode = null, token) => 
     const requestBody = {
       products: products.map(product => ({
         productId: product.productId,
-        quantity: product.quantity
+        quantity: 1
       })),
       discountCode: discountCode
     };
@@ -245,11 +269,17 @@ export const purchaseProducts = async (products, discountCode = null, token) => 
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
   
-      const responseData = await response.json();
-      return responseData; // Puedes ajustar esto según la respuesta esperada
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        const responseData = await response.json();
+        return responseData; // Ajusta según la estructura de tu respuesta esperada
+      } else {
+        throw new Error('La respuesta no es JSON válida');
+      }
     } catch (error) {
       console.error('Error al realizar la solicitud:', error);
       throw error;
     }
   };
+  
   

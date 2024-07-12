@@ -9,7 +9,7 @@ import carritoIcono from "./imagenes/shopping-cart.svg";
 import user from "./imagenes/user.svg";
 import "./css/navbar.css";
 import "./css/carrito.css";
-import { obtenerItemsCarrito } from "./js/carritoService.js";
+import { obtenerItemsCarrito , limpiarCarrito} from "./js/carritoService.js";
 import Carrito from "./Cart.jsx";
 
 function Navbar() {
@@ -61,6 +61,7 @@ function Navbar() {
 
   const handleLogout = () => {
     dispatch(logout());
+    limpiarCarrito();
     navigate('/login');
   };
 
@@ -107,9 +108,7 @@ function Navbar() {
                 <img src={user} alt="" />
                 {showUserMenu && (
                   <div id="userDropdown" className="dropdown-content" onMouseEnter={handleUserEnter} onMouseLeave={handleUserLeave}>
-                    <a href="#" className="decoracion-enlace nombre2" onClick={() => navigate("/account")}>
-                      Mi Cuenta
-                    </a>
+
                     <a href="#" className="decoracion-enlace nombre2" onClick={() => navigate("/orders")}>
                       Mis Pedidos
                     </a>

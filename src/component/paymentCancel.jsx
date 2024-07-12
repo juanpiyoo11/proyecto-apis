@@ -26,7 +26,7 @@ export default function PaymentCancel() {
           });
         }}
       >
-        Payment Cancelled
+        Cancelar
       </Button>
     </>
   );

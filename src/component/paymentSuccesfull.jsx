@@ -1,15 +1,50 @@
-import { useEffect, useState } from "react";
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Slide, useDisclosure, useToast } from "@chakra-ui/react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import CardCompo from "./cardCompo.jsx";
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react";
-import { MdCancel, MdOutlinePayment } from "react-icons/md";
+import { useToast, Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react';
+import { Button } from "@chakra-ui/react";
+import { MdOutlinePayment } from "react-icons/md";
 import { limpiarCarrito, obtenerItemsCarrito } from "../js/carritoService.js";
-import { useNavigate } from "react-router-dom";
-import { deleteProduct } from "../js/productServices.js";
+import { purchaseProducts } from "../js/productServices.js";
+import { useSelector } from 'react-redux';
 
-export default function PaymentSuccesful() {
+export default function PaymentSuccesful({ cuponDescuento, descuento }) {
+  const token = useSelector(state => state.auth.token);
   const toast = useToast();
+  const carrito = obtenerItemsCarrito();
+
+  const handlePayment = () => {
+    if (carrito.length === 0) {
+      // Mostrar alerta si el carrito está vacío
+      toast({
+        title: "Carrito vacío",
+        description: "Debes elegir productos antes de proceder con el pago.",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
+
+
+    const productos = carrito.map(item => ({
+      productId: item.id,
+    }));
+
+    // Aquí puedes usar cuponDescuento y descuento
+    purchaseProducts(productos, cuponDescuento, token);
+
+    toast({
+      title: "Payment Succesful.",
+      description: "Payment Succesful. Thank you for your purchase.",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+
+    limpiarCarrito();
+
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 2000);
+  };
 
   return (
     <>
@@ -18,26 +53,9 @@ export default function PaymentSuccesful() {
         variant="ghost"
         colorScheme="green"
         leftIcon={<MdOutlinePayment />}
-        onClick={() => {
-          toast({
-            title: "Payment Succesful.",
-            description: "Payment Succesful. Thank you for your purchase.",
-            status: "success",
-            duration: 5000,
-            isClosable: true,
-          });
-          const carrito = obtenerItemsCarrito();
-          {
-            carrito.map((producto) => deleteProduct(producto.id));
-          }
-          limpiarCarrito();
-
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
-        }}
+        onClick={handlePayment}
       >
-        Payment Succesful
+        Comprar
       </Button>
     </>
   );
