@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProductsBySeller, deleteProduct } from "./js/productServices.js";
 import "./css/producto.css";
-import { useSelector } from 'react-redux'; // Importa useSelector para obtener el token
+import { useSelector } from 'react-redux';
 
 const Products = () => {
   const navigate = useNavigate();

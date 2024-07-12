@@ -43,12 +43,6 @@ label {
   width: 100%;
 }
 
-.sexos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding-left: 1rem;
-}
 
 .boton {
   background-color: white;

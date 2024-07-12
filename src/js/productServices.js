@@ -76,16 +76,13 @@ export const getProductsByNameBrand = async (query) => {
     .finally(() => console.log('promise is finished'));
   };
 
-export const createProduct = (id, publisherId, brand, category, name, price, size, color, sex, stock, image) => {
-
+export const createProduct = (token, brand, category, name, price, size, color, sex, stock, image) => {
     var raw = JSON.stringify({
-        "id": id,
-        "publisherId": publisherId, 
-        "brand": brand, 
+        "brand": brand,
         "category": category,
-        "name": name, 
-        "price": price, 
-        "size": size, 
+        "name": name,
+        "price": price,
+        "size": size,
         "color": color,
         "sex": sex,
         "stock": stock,
@@ -94,16 +91,26 @@ export const createProduct = (id, publisherId, brand, category, name, price, siz
 
     var requestOptions = {
         method: 'POST',
-        headers: {"Content-Type": "application/json"},
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
         body: raw,
         redirect: 'follow'
     };
 
-    return fetch("http://localhost:3000/products", requestOptions)
-        .then(response => response.text())
+    return fetch("https://backend-api-tpo-production.up.railway.app/products/create", requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al agregar el producto');
+            }
+            return response.text();
+        })
         .then(result => console.log(result))
         .catch(error => console.log('Error al agregar el producto', error));
 }
+
+    
 
 export const modifyProduct = (product, id) => {
     return fetch(`http://localhost:3000/products/${id}`, {
