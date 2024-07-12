@@ -11,6 +11,8 @@ const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
 
+  const [message, setMessage] = useState('');
+
   const handleIdChange = (e) => {
     setId(e.target.value);
   }
@@ -27,14 +29,13 @@ const RegisterForm = () => {
   const handleRegisterClick = async (e) => {
     e.preventDefault();
     try {
-      await signIn(id, name, email, password);
+      const result = await signIn(id, name, email, password);
+      setMessage(`Registro exitoso: ${JSON.stringify(result)}`);
     } catch (error) {
-      console.error("Register failed:", error);
+      setMessage(`Registro fallido: ${error.message}`);
     }
   }
  
-  
-
   return (
     <div className="body">
       <div className="veen">
@@ -62,7 +63,7 @@ const RegisterForm = () => {
               <button className="dark" onClick={handleRegisterClick} >Enviar</button>
             </div>
             <br />
-            
+            {message && <div>{message}</div>}
           </form>
           
         </div>
@@ -72,4 +73,3 @@ const RegisterForm = () => {
 };
 
 export default RegisterForm;
-

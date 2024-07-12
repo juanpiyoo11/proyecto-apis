@@ -54,7 +54,7 @@ function Carrito({ cerrarCarrito }) {
                 <div className="imagen">
                   <img 
                     className="zapa" 
-                    src={producto.image && producto.image[0] ? producto.image[0].url : defaultImage} 
+                    src={producto.image ? producto.image : defaultImage} 
                     alt={producto.name ? producto.name : 'Producto sin nombre'} 
                   />
                 </div>

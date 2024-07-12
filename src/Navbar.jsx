@@ -1,20 +1,28 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { logout, selectIsAuthenticated } from './store/authSlice';
+import { Badge } from "@chakra-ui/react";
 import skoLogo from "./imagenes/sko.png";
 import search from "./imagenes/search.svg";
 import carritoIcono from "./imagenes/shopping-cart.svg";
 import user from "./imagenes/user.svg";
 import "./css/navbar.css";
 import "./css/carrito.css";
-import { useNavigate, Routes, Route, Link } from "react-router-dom";
-import Carrito from "./Cart.jsx";
-import React, { useEffect, useState } from "react";
-import { Badge } from "@chakra-ui/react";
 import { obtenerItemsCarrito } from "./js/carritoService.js";
+import Carrito from "./Cart.jsx";
 
 function Navbar() {
   const [productos, setProductos] = useState([]);
   const navigate = useNavigate();
   const [menuVisible, setMenuVisible] = useState(false);
   const [submenuActive, setSubmenuActive] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const [carritoVisible, setCarritoVisible] = useState(false);
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
   const handleMouseEnter = () => {
     setMenuVisible(true);
@@ -35,8 +43,6 @@ function Navbar() {
     setMenuVisible(false);
   };
 
-  const [showUserMenu, setShowUserMenu] = useState(false);
-
   const handleUserEnter = () => {
     setShowUserMenu(true);
   };
@@ -44,8 +50,6 @@ function Navbar() {
   const handleUserLeave = () => {
     setShowUserMenu(false);
   };
-
-  const [carritoVisible, setCarritoVisible] = useState(false);
 
   const toggleCarrito = () => {
     setCarritoVisible(!carritoVisible);
@@ -55,7 +59,11 @@ function Navbar() {
     setCarritoVisible(false);
   };
 
-  const [query, setQuery] = useState("");
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/login');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query === "") {
@@ -73,6 +81,7 @@ function Navbar() {
   }, []);
 
   let carrito = obtenerItemsCarrito();
+
   return (
     <>
       <div className="parteSuperior">
@@ -81,8 +90,6 @@ function Navbar() {
             <img className="sko" src={skoLogo} alt="" onClick={() => navigate("/home")} />
           </div>
           <div className="contenedor-buscador">
-            {/* <input className='buscador' type="text" placeholder='  Buscar...'/>
-                    <button className='submit'><img src={search} alt="Buscar" /></button> */}
             <form onSubmit={handleSubmit}>
               <input className="buscador" type="text" placeholder="  Buscar..." value={query} onChange={(e) => setQuery(e.target.value)} />
               <button className="submit" type="submit">
@@ -91,26 +98,31 @@ function Navbar() {
             </form>
           </div>
           <div className="contenedor-session">
-            <div className="user" onMouseEnter={handleUserEnter} onMouseLeave={handleUserLeave}>
-              <img src={user} alt="" />
-              {showUserMenu && (
-                <div id="userDropdown" className="dropdown-content" onMouseEnter={handleUserEnter} onMouseLeave={handleUserLeave}>
-                  <a href="#" className="decoracion-enlace nombre2" onClick={() => navigate("/login")}>
-                    {" "}
-                    Mi Cuenta
-                  </a>
-                  <a href="#" className="decoracion-enlace nombre2" >
-                    Mis Pedidos
-                  </a>
-                  <a href="#" className="decoracion-enlace nombre2" onClick={() => navigate("/products")}>
-                    Mis Productos
-                  </a>
-                  <a href="#" className="decoracion-enlace nombre2">
-                    Cerrar Sesion
-                  </a>
-                </div>
-              )}
-            </div>
+            {!isAuthenticated ? (
+              <a className="user" href="#" onClick={() => navigate("/login")}>
+                <img src={user} alt="" />
+              </a>
+            ) : (
+              <div className="user" onMouseEnter={handleUserEnter} onMouseLeave={handleUserLeave}>
+                <img src={user} alt="" />
+                {showUserMenu && (
+                  <div id="userDropdown" className="dropdown-content" onMouseEnter={handleUserEnter} onMouseLeave={handleUserLeave}>
+                    <a href="#" className="decoracion-enlace nombre2" onClick={() => navigate("/account")}>
+                      Mi Cuenta
+                    </a>
+                    <a href="#" className="decoracion-enlace nombre2" onClick={() => navigate("/orders")}>
+                      Mis Pedidos
+                    </a>
+                    <a href="#" className="decoracion-enlace nombre2" onClick={() => navigate("/products")}>
+                      Mis Productos
+                    </a>
+                    <a href="#" className="decoracion-enlace nombre2" onClick={handleLogout}>
+                      Cerrar Sesión
+                    </a>
+                  </div>
+                )}
+              </div>
+            )}
 
             <button className="carrito" onClick={toggleCarrito}>
               <img src={carritoIcono} alt="" />

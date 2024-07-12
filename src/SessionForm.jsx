@@ -1,34 +1,39 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./css/SessionForm.css"
+import "./css/SessionForm.css";
 import { useNavigate } from "react-router-dom";
-import RegisterForm from './RegisterForm';
-import { login } from './js/UserService.js';
+import { useDispatch } from 'react-redux';
+import { login } from './js/UserService';
+import { setToken, setUser } from './store/authSlice';
 
 const SessionForm = () => {
   const [isLoginActive, setIsLoginActive] = useState(true);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleIdChange = (e) => {
     setId(e.target.value);
-  }
+  };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
   const handleLoginClick = async (e) => {
     e.preventDefault();
     try {
-      await login(id, password);
-      // Manejar el éxito del login (por ejemplo, redirigir a la página principal)
+      const data = await login(id, password);
+      dispatch(setToken(data.token));
+      dispatch(setUser(data.record));
+      navigate('/'); // Redirigir a la página principal u otra ruta después del login
     } catch (error) {
-      // Manejar errores de login
+      setErrorMessage('Login failed: ' + error.message);
       console.error("Login failed:", error);
     }
-  }
+  };
 
   return (
     <div className="body">
@@ -51,6 +56,7 @@ const SessionForm = () => {
             <div className="submit">
               <button className="dark" onClick={() => navigate("/register")}>Register</button>
             </div>
+            {errorMessage && <p>{errorMessage}</p>}
           </form>
         </div>
       </div>

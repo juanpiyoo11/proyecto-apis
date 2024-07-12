@@ -1,23 +1,23 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getProducts, deleteProduct } from "./js/productServices.js";
+import { getProductsBySeller, deleteProduct } from "./js/productServices.js";
 import "./css/producto.css";
+import { useSelector } from 'react-redux'; // Importa useSelector para obtener el token
 
-const products = () => {
+const Products = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const token = useSelector(state => state.auth.token); // Obtén el token de autenticación desde Redux
 
   useEffect(() => {
-    getProducts().then((data) => setProducts(data));
-  }, []);
-  // useEffect(() => {
-  //     fetch("http://localhost:3000/products")
-  //     .then((response) => response.json())
-  //     .then((data) => setProducts(data))
-  // }, [])
+    if (token) {
+      getProductsBySeller(token)
+        .then((data) => setProducts(data))
+        .catch(error => console.error('Error al obtener productos:', error));
+    }
+  }, [token]); // Ejecuta useEffect cuando cambie el token
 
-  const deleteProducts = (id) => {
+  const deleteProductHandler = (id) => {
     try {
       deleteProduct(id);
       const updatedProducts = products.filter((product) => product.id !== id);
@@ -39,14 +39,14 @@ const products = () => {
             </li>
             <li>Marca: {product.brand}</li>
             <li>Nombre: {product.name}</li>
-            <li>Categoria: {product.category}</li>
+            <li>Categoría: {product.category}</li>
             <li>Precio: ${product.price}</li>
             <li>Talle: {product.size}</li>
             <li>Color: {product.color}</li>
             <li>Sexo: {product.sex}</li>
             <li>Stock: {product.stock}</li>
             <li className="buttons">
-              <button onClick={() => deleteProducts(product.id)}>Eliminar</button>
+              <button onClick={() => deleteProductHandler(product.id)}>Eliminar</button>
               <button onClick={() => navigate(`../modifyProducts/${product.id}`)}>Modificar</button>
             </li>
           </ul>
@@ -56,4 +56,4 @@ const products = () => {
   );
 };
 
-export default products;
+export default Products;

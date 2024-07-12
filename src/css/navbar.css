@@ -82,7 +82,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    position: relative; /* Añadimos posición relativa */
+  }
+
 .contenedor-session{
     width: 20%;
     height: 100%;
@@ -92,10 +94,6 @@
     align-items: center;
     margin-left: -3rem;
     padding: 0px;
-   
-    
-    
-    
 }
 
 

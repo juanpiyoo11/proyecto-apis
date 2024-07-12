@@ -23,6 +23,31 @@ export const getProductById = (id) => {
         .finally(() => console.log('promise is finished'));
 }
 
+export const getProductsBySeller = (token) => {
+    if (!token) {
+        console.error('Token de autenticación no proporcionado');
+        return Promise.reject('Token de autenticación no proporcionado');
+    }
+
+    return fetch(`https://backend-api-tpo-production.up.railway.app/products/by-seller`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('Error al obtener productos');
+        }
+        return response.json();
+    })
+    .catch(error => {
+        console.error('Error al obtener productos', error);
+        throw error;
+    })
+    .finally(() => console.log('Promesa finalizada'));
+};
+
+
 export const getProductsByNameBrand = async (query) => {
     try {
       const response = await fetch('https://backend-api-tpo-production.up.railway.app/products');

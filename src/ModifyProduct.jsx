@@ -1,29 +1,51 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProductById, modifyProduct } from "./js/productServices.js";
 import "./css/addProduct.css";
+
 const ModifyProduct = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [products, setProducts] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [product, setProduct] = useState({
+    id: "",
+    publisherId: "",
+    brand: "",
+    category: "",
+    name: "",
+    price: "",
+    size: "",
+    color: "",
+    stock: "",
+    image: "",
+  });
+
+  useEffect(() => {
+    getProductById(id)
+      .then((data) => {
+        setProduct(data);
+        setIsLoaded(true);
+      })
+      .catch((error) => {
+        console.error("Error fetching product:", error);
+      });
+  }, [id]);
 
   const updateProduct = async (e) => {
     e.preventDefault();
     const updatedProduct = {
       id: id,
-      publisherId: products.publisherId,
-      brand: document.getElementsByName("brand")[0].value,
-      category: document.getElementsByName("name")[0].value,
-      name: document.getElementsByName("category")[0].value,
-      price: document.getElementsByName("price")[0].value,
-      size: document.getElementsByName("size")[0].value,
-      color: document.getElementsByName("color")[0].value,
-      sex: document.querySelector('input[name="sex"]:checked').value,
-      stock: document.getElementsByName("stock")[0].value,
-      image: products.image,
+      brand: e.target.brand.value,
+      category: e.target.category.value,
+      name: e.target.name.value,
+      price: parseFloat(e.target.price.value), // Convertir a número
+      size: parseFloat(e.target.size.value), // Convertir a número
+      color: e.target.color.value,
+      stock: parseInt(e.target.stock.value, 10), // Convertir a número entero
+      image: product.image,
     };
-    const selectedFile = e.target.elements.image.files[0];
+
+    const selectedFile = e.target.image.files[0];
     if (selectedFile) {
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -45,108 +67,122 @@ const ModifyProduct = () => {
     }
   };
 
-  useEffect(() => {
-    getProductById(id).then((data) => setProducts(data));
-  }, []);
-
-  return (
+  return isLoaded ? (
     <div className="contenedor_todo">
       <form onSubmit={updateProduct}>
         <h1 className="titulo">Modificar un producto</h1>
+
         <div className="sector">
-          <label>Id: </label> {products.id}
-        </div>
-        <br />
-        <div className="sector">
-          <label>Publicador: </label>
-          {products.publisherId}
-        </div>
-        <br />
-        <div className="sector">
-          <label>Marca: </label> <br />
-          <input type="text" name="brand" defaultValue={products.brand} placeholder={products.brand} required />
-        </div>
-        <br />
-        <div className="sector">
-          <label>Nombre: </label>
+          <label>Marca:</label>
           <br />
-          <input type="text" name="name" defaultValue={products.name} placeholder={products.name} required />
+          <input
+            type="text"
+            name="brand"
+            defaultValue={product.brand}
+            placeholder={product.brand}
+            required
+          />
         </div>
+
         <br />
         <div className="sector">
-          <label>Categoría: </label>
+          <label>Nombre:</label>
           <br />
-          <input type="text" name="category" defaultValue={products.category} placeholder={products.category} required />
+          <input
+            type="text"
+            name="name"
+            defaultValue={product.name}
+            placeholder={product.name}
+            required
+          />
         </div>
+
+        <br />
+        <div className="sector">
+          <label>Categoría:</label>
+          <br />
+          <input
+            type="text"
+            name="category"
+            defaultValue={product.category}
+            placeholder={product.category}
+            required
+          />
+        </div>
+
         <br />
         <div className="sector">
           <label>Precio: $</label>
           <br />
-          <input type="number" name="price" defaultValue={products.price} placeholder={products.price} required />
-        </div>
-        <br />
-        <div className="sector">
-          <label>Talle: </label>
-          <br />
-          <select name="size" required defaultValue={products.size}>
-            <option value=""></option>
-            {[...Array(15).keys()].map((index) => (
-              <option key={index} value={7 + index * 0.5}>
-                {7 + index * 0.5}
-              </option>
-            ))}
-          </select>
-        </div>
-        <br />
-        <div className="sector">
-          <label> Color: </label>
-          <br />
-          <input type="text" name="color" defaultValue={products.color} placeholder={products.color} required />
-        </div>
-        <br />
-        <div className="sector">
-          <label> Sexo:</label>
-          <br />
-          <label>
-            <input type="radio" name="sex" value="F" required /> F
-          </label>
-          <label>
-            <input type="radio" name="sex" value="M" required /> M
-          </label>
-
-          <label>
-            <input type="radio" name="sex" value="Unisex" required /> Unisex
-          </label>
-        </div>
-        <br />
-        <div className="sector">
-          <label>Stock: </label>
-          <br />
-          <input type="number" min="1" name="stock" defaultValue={products.stock} placeholder={products.stock} required />
+          <input
+            type="number"
+            name="price"
+            defaultValue={product.price}
+            placeholder={product.price}
+            required
+          />
         </div>
 
         <br />
         <div className="sector">
-          <label>Imagen: </label>
+          <label>Talle:</label>
+          <br />
+          <input
+            type="number"
+            name="size"
+            defaultValue={product.size}
+            placeholder={product.size}
+            required
+          />
+        </div>
+
+        <br />
+        <div className="sector">
+          <label>Color:</label>
+          <br />
+          <input
+            type="text"
+            name="color"
+            defaultValue={product.color}
+            placeholder={product.color}
+            required
+          />
+        </div>
+
+        <br />
+        <div className="sector">
+          <label>Stock:</label>
+          <br />
+          <input
+            type="number"
+            name="stock"
+            defaultValue={product.stock}
+            placeholder={product.stock}
+            required
+          />
+        </div>
+
+        <br />
+        <div className="sector">
+          <label>Imagen:</label>
           <br />
           <input type="file" accept="image/*" name="image" />
         </div>
-
+        
         <div className="botones">
           <button className="boton" type="submit">
             Modificar
           </button>
-
           <button className="boton" onClick={() => navigate("../home")}>
-            Back to Home
+            Volver a Inicio
           </button>
           <button className="boton" onClick={() => navigate("../products")}>
-            My products{" "}
+            Mis productos
           </button>
         </div>
       </form>
     </div>
-  );
+  ) : null;
 };
 
 export default ModifyProduct;

@@ -119,12 +119,17 @@ const SearchBar = () => {
             </option>
           ))}
         </select> }
+        <br />
+        <br />
         { <><input type="text" name="color" placeholder="Color" value={filters.color} onChange={handleFilterChange} /><select name="sex" value={filters.sex} onChange={handleFilterChange}>
           <option value="">Sexo</option>
           <option value="F">F</option>
           <option value="M">M</option>
           <option value="Unisex">Unisex</option>
         </select></> }
+        <br />
+        <br />
+        <br />
         <div className="bot">
           <button onClick={applyFilters}>Aplicar filtros</button>
         </div>

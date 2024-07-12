@@ -43,7 +43,7 @@ function ProductDetail() {
             <Image 
               boxSize="80%" 
               mt="5rem" 
-              src={product && product.image && product.image[0] ? product.image[0].url : defaultImage} 
+              src={product && product.image ? product.image: defaultImage} 
               alt={product && product.name ? product.name : 'Producto sin nombre'} 
             />
           </Box>
