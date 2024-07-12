@@ -1,3 +1,4 @@
+
 .contenedor-todo {
   display: grid;
   grid-template-columns: 1fr;
@@ -43,4 +44,5 @@
     width: 20vw;
     height: 12vh;
   }
+  
   
