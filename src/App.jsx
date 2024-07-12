@@ -12,6 +12,8 @@ import Home from "./Home.jsx";
 import SearchBar from "./searchBar.jsx"
 import * as React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
+import SessionForm from "./SessionForm.jsx";
+import RegisterForm from "./RegisterForm.jsx";
 
 function App() {
     const [count, setCount] = useState(0);
