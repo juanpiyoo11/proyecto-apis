@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./css/App.css";
-import Navbar from "./Navbar.jsx";
+import Navbar from "./navbar.jsx";
 import Pie from "./Footer.jsx";
 import PaginaProducto from "./ProductDetail.jsx";
 import ProductPage from "./ProductPage.jsx";

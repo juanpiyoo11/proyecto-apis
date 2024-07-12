@@ -39,10 +39,10 @@ const SearchBar = () => {
     brand: "",
     category: "",
     minPrice: "",
-    maxPrice: ""
-    // size: "",
-    // color: "",
-    // sex: "",
+    maxPrice: "",
+    size: "",
+    color: "",
+    sex: "",
   });
 
   const resetFilters = () => {
@@ -50,10 +50,10 @@ const SearchBar = () => {
       brand: "",
       category: "",
       minPrice: "",
-      maxPrice: ""
-      // size: "",
-      // color: "",
-      // sex: "",
+      maxPrice: "",
+      size: "",
+      color: "",
+      sex: "",
     });
   };
 
@@ -88,15 +88,15 @@ const SearchBar = () => {
       filtered = filtered.filter((product) => product.price <= parseFloat(filters.maxPrice));
     }
 
-    // if (filters.size) {
-    //   filtered = filtered.filter((product) => product.size === filters.size);
-    // }
-    // if (filters.color) {
-    //   filtered = filtered.filter((product) => product.color.toLowerCase().includes(filters.color.toLowerCase()));
-    // }
-    // if (filters.sex) {
-    //   filtered = filtered.filter((product) => product.sex === filters.sex);
-    // }
+    if (filters.size) {
+      filtered = filtered.filter((product) => parseFloat(product.size) === parseFloat(filters.size));
+    }
+    if (filters.color) {
+      filtered = filtered.filter((product) => product.color.toLowerCase().includes(filters.color.toLowerCase()));
+    }
+    if (filters.sex) {
+      filtered = filtered.filter((product) => product.sex.toLowerCase() === filters.sex.toLowerCase());
+    }
     setProducts(filtered);
   };
 
@@ -111,21 +111,20 @@ const SearchBar = () => {
         <input type="text" name="category" placeholder="Categoria" value={filters.category} onChange={handleFilterChange} />
         <input type="number" name="minPrice" value={filters.minPrice} placeholder="Precio desde" onChange={handleFilterChange} />
         <input type="number" name="maxPrice" value={filters.maxPrice} placeholder="Precio hasta" onChange={handleFilterChange} />
-        {/* <select name="size" value={filters.size} onChange={handleFilterChange}>
+        { <select name="size" value={filters.size} onChange={handleFilterChange}>
           <option value="">Talle</option>
           {[...Array(15).keys()].map((index) => (
             <option key={index} value={7 + index * 0.5}>
               {7 + index * 0.5}
             </option>
           ))}
-        </select> */}
-        {/* <input type="text" name="color" placeholder="Color" value={filters.color} onChange={handleFilterChange} />
-        <select name="sex" value={filters.sex} onChange={handleFilterChange}>
+        </select> }
+        { <><input type="text" name="color" placeholder="Color" value={filters.color} onChange={handleFilterChange} /><select name="sex" value={filters.sex} onChange={handleFilterChange}>
           <option value="">Sexo</option>
           <option value="F">F</option>
           <option value="M">M</option>
           <option value="Unisex">Unisex</option>
-        </select> */}
+        </select></> }
         <div className="bot">
           <button onClick={applyFilters}>Aplicar filtros</button>
         </div>
@@ -136,7 +135,7 @@ const SearchBar = () => {
     products.map((product) => (
       <div key={product.id} className="tarjeta_producto_filter">
         <img
-          src={product.image[0] ? product.image[0].url : defaultImage}
+          src={product.image ? product.image : defaultImage}
           alt={product.name}
           className="imagen_producto_filter"
           onClick={() => navigate(`../product/${product.id}`)}

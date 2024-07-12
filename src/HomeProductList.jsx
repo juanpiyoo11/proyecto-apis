@@ -22,7 +22,7 @@ const Productos = () => {
       {primerosSeis.map((producto) => (
         <div key={producto.id} className="tarjeta_producto">
             <img
-            src={producto.image[0] ? producto.image[0].url : defaultImage} 
+            src={producto.image ? producto.image : defaultImage} 
             alt={producto.name}
             className="imagen_producto"
             onClick={() => navigate(`../product/${producto.id}`)}
