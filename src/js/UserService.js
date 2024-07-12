@@ -38,10 +38,9 @@ export const login = (nick , password) => {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         //body: raw,
-        redirect: 'follow'
     };
 
-    return fetch("https://backend-api-tpo-production.up.railway.app/user/sign-in?username="+nick+"&password="+password, requestOptions)
+    return fetch("https://backend-api-tpo-production.up.railway.app/user/login?username="+nick+"&password="+password, requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('Error try login', error));
