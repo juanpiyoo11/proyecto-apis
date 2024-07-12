@@ -63,7 +63,7 @@ const RegisterForm = () => {
               <input type="password" name="" onChange={handlePasswordChange}/>
               <label>Password</label>
             </div>
-            <div className="submit">
+            <div className="submit submit2">
               <button className="dark" onClick={handleRegisterClick} >Enviar</button>
             </div>
             <br />
