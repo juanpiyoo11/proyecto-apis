@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./css/SessionForm.css"
 import {signIn} from './js/UserService.js'
+import { useNavigate } from "react-router-dom";
+
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
   const [isLoginActive, setIsLoginActive] = useState(true);
 
   const [id, setId] = useState('');
@@ -30,7 +33,8 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       const result = await signIn(id, name, email, password);
-      setMessage(`Registro exitoso: ${JSON.stringify(result)}`);
+      alert("Registrado con éxito");
+      navigate("/login")
     } catch (error) {
       setMessage(`Registro fallido: ${error.message}`);
     }

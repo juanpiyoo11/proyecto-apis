@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./css/addProduct.css";
-import { createProduct, getProducts } from "./js/productServices.js";
+import { createProduct, getProducts, uploadImg } from "./js/productServices.js";
 import { useSelector } from 'react-redux';
 
 const AddProduct = () => {
@@ -14,15 +14,14 @@ const AddProduct = () => {
     getProducts().then((data) => setProducts(data));
   }, []);
 
-  const handlePublicar = (e) => {
+  const handlePublicar = async (e) => {
     e.preventDefault();
     const count = products.length + 1;
     const selectedFile = e.target.elements.image.files[0];
 
     if (selectedFile) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const imageUrl = event.target.result;
+      const imageUrl = await uploadImg(selectedFile); 
+
 
         const newProduct = {
           brand: document.getElementsByName("brand")[0].value,
@@ -49,10 +48,8 @@ const AddProduct = () => {
           newProduct.image
         )
         .then(() => alert("Publicado con éxito"))
+        .then(() => navigate("../products"))
         .catch(error => alert(error.message));
-      };
-
-      reader.readAsDataURL(selectedFile);
     }
   };
 
@@ -88,7 +85,7 @@ const AddProduct = () => {
           <div className="sector">
             <label>Talle: </label>
             <br />
-            <input className="agrega" type="number" name="size" placeholder="Ej: 7.5" required />
+            <input className="agrega" type="number" name="size" step="0.5" placeholder="Ej: 7.5" required />
           </div>
           <br />
           <div className="sector">

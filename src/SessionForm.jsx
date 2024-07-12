@@ -28,7 +28,7 @@ const SessionForm = () => {
       const data = await login(id, password);
       dispatch(setToken(data.token));
       dispatch(setUser(data.record));
-      navigate('/'); // Redirigir a la página principal u otra ruta después del login
+      navigate('/');
     } catch (error) {
       setErrorMessage('Login failed: ' + error.message);
       console.error("Login failed:", error);

@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getProductById, modifyProduct } from "./js/productServices.js";
+import { getProductById, modifyProduct, uploadImg } from "./js/productServices.js";
 import "./css/addProduct.css";
+import { useSelector } from 'react-redux';
 
 const ModifyProduct = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const token = useSelector((state) => state.auth.token);
   const [isLoaded, setIsLoaded] = useState(false);
   const [product, setProduct] = useState({
-    id: "",
-    publisherId: "",
     brand: "",
     category: "",
     name: "",
     price: "",
     size: "",
     color: "",
+    sex: "",
     stock: "",
     image: "",
   });
@@ -34,38 +35,40 @@ const ModifyProduct = () => {
   const updateProduct = async (e) => {
     e.preventDefault();
     const updatedProduct = {
-      id: id,
-      brand: e.target.brand.value,
-      category: e.target.category.value,
-      name: e.target.name.value,
-      price: parseFloat(e.target.price.value), // Convertir a número
-      size: parseFloat(e.target.size.value), // Convertir a número
-      color: e.target.color.value,
-      stock: parseInt(e.target.stock.value, 10), // Convertir a número entero
-      image: product.image,
+        id: id,
+        brand: e.target.brand.value,
+        category: e.target.category.value,
+        name: e.target.name.value,
+        price: parseFloat(e.target.price.value),
+        size: parseFloat(e.target.size.value),
+        color: e.target.color.value,
+        sex: e.target.sex.value,
+        stock: parseInt(e.target.stock.value, 10),
+        image: product.image, // Asegúrate de que product.image contenga la URL de la imagen actual si existe
     };
 
-    const selectedFile = e.target.image.files[0];
+    const selectedFile = e.target.elements.image.files[0];
     if (selectedFile) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const imageUrl = event.target.result;
-        updatedProduct.image = imageUrl;
-        modifyProduct(updatedProduct, id);
-        alert("Modificado con éxito");
-        navigate("../products");
-      };
-      reader.readAsDataURL(selectedFile);
+        try {
+            const imageUrl = await uploadImg(selectedFile); // Espera a que se cargue la imagen y devuelve la URL
+            updatedProduct.image = imageUrl; // Asigna la URL de la imagen actualizada a updatedProduct
+
+            await modifyProduct(updatedProduct, id, token);
+            alert('Modificado con éxito');
+            navigate('../products');
+        } catch (error) {
+            console.error('Error al modificar el producto:', error);
+        }
     } else {
-      try {
-        await modifyProduct(updatedProduct, id);
-        alert("Modificado con éxito");
-        navigate("../products");
-      } catch (error) {
-        console.error("Error al modificar el producto:", error);
-      }
+        try {
+            await modifyProduct(updatedProduct, id, token);
+            alert('Modificado con éxito');
+            navigate('../products');
+        } catch (error) {
+            console.error('Error al modificar el producto:', error);
+        }
     }
-  };
+};
 
   return isLoaded ? (
     <div className="contenedor_todo">
@@ -130,6 +133,7 @@ const ModifyProduct = () => {
           <input
             type="number"
             name="size"
+            step="0.5"
             defaultValue={product.size}
             placeholder={product.size}
             required
@@ -145,6 +149,18 @@ const ModifyProduct = () => {
             name="color"
             defaultValue={product.color}
             placeholder={product.color}
+            required
+          />
+        </div>
+
+        <div className="sector">
+          <label>Sex:</label>
+          <br />
+          <input
+            type="text"
+            name="sex"
+            defaultValue={product.sex}
+            placeholder={product.sex}
             required
           />
         </div>

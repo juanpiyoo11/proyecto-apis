@@ -23,7 +23,7 @@ const Productos = () => {
         <div key={producto.id} className="tarjeta_producto">
             <img
             src={producto.image ? producto.image : defaultImage} 
-            alt={producto.name}
+            alt={producto.name} 
             className="imagen_producto"
             onClick={() => navigate(`../product/${producto.id}`)}
            />

@@ -112,13 +112,30 @@ export const createProduct = (token, brand, category, name, price, size, color, 
 
     
 
-export const modifyProduct = (product, id) => {
-    return fetch(`http://localhost:3000/products/${id}`, {
+export const modifyProduct = (product, id, token) => {
+    console.log(product.image)
+    var raw = JSON.stringify({
+        "id": id,
+        "brand": product.brand,
+        "category": product.category,
+        "name": product.name,
+        "price": product.price,
+        "size": product.size,
+        "color": product.color,
+        "sex": product.sex,
+        "stock": product.stock,
+        "image": product.image
+        
+    });
+
+    return fetch(`https://backend-api-tpo-production.up.railway.app/products/modify`, {
         method: "PUT",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify(product)
+        body: raw,
+        redirect: 'follow'
     });
 }
 
@@ -164,3 +181,30 @@ export const getProductBySex = async (query) => {
         return [];
     }
 }
+
+export const uploadImg = async (imageFile) => {
+    try {
+        const formData = new FormData();
+        formData.append('imageFile', imageFile, imageFile.name); // 'imageFile' debe coincidir con el nombre esperado por el backend
+
+        const response = await fetch('https://backend-api-tpo-production.up.railway.app/imagen/upload', {
+            method: 'POST',
+            headers: {
+                'accept': '*/*', // Especifica el tipo de contenido aceptado
+            },
+            body: formData, // Adjunta el FormData que contiene el archivo
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al subir la imagen'); // Manejo de errores si la respuesta no es exitosa
+        }
+
+        const data = await response.json(); // Si el backend devuelve JSON, convierte la respuesta a JSON
+        return data.url; // Suponiendo que el backend devuelve un objeto con una propiedad 'url'
+
+    } catch (error) {
+        console.error('Error en la carga de la imagen:', error);
+        throw error; // Puedes manejar el error según sea necesario en tu aplicación
+    }
+};
+
