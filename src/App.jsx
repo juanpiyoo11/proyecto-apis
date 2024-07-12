@@ -45,6 +45,7 @@ function App() {
                             <Route path="/register" element={<RegisterForm/>}/>
                         </Routes>
                     </div>
+                    
                     <div className="footer">
                         <Pie/>
                     </div>
